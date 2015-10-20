@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author angelo
  */
-public interface Usuario {
+public interface IUsuario {
 
     public void setId_usuario(int id_usuario);
 
@@ -26,4 +26,6 @@ public interface Usuario {
     public String getClave();
 
     public boolean isHabilitado();
+
+    public String toString();
 }

@@ -5,6 +5,7 @@
  */
 package DAO.SQLServer;
 
+import DAO.Cliente.ClienteDAO;
 import DAO.MesaResultado.MesaResultadoDAO;
 import DAO.MotorBD;
 import DAO.Usuario.UsuarioDAO;
@@ -34,6 +35,11 @@ public class SQLServerDAOFactory extends MotorBD {
     @Override
     public MesaResultadoDAO getMesaResultadoDAO() {
         return new DAO.MesaResultado.MesaResultadoDAOSQLServer();
+    }
+
+    @Override
+    public ClienteDAO getClienteDAO() {
+        return new DAO.Cliente.ClienteDAOSQLServer();
     }
 
 }

@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO.MesaResultado;
+package DAO.Cliente;
 
-import java.util.List;
-import Modelo.Negocio.MesaResultado;
+import Modelo.Negocio.Cliente;
 
 /**
  *
  * @author Angelo
  */
-public interface MesaResultadoDAO {
+public interface ClienteDAO {
 
-    public List<MesaResultado> getResultados();
+    public Cliente getCliente(int id_cliente);
 
-    public boolean cargarResultados(MesaResultado m);
 }

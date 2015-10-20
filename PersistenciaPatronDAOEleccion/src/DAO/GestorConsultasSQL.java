@@ -17,8 +17,6 @@ import java.util.ArrayList;
  */
 public class GestorConsultasSQL<T> {
 
-    private PreparedStatement sentencia = null;
-
     /**
      * Realiza una consulta a la base de datos, y devuelve el resultado de la
      * misma.
@@ -32,6 +30,7 @@ public class GestorConsultasSQL<T> {
      */
     public List<T> executeQuery(String sql, Class clase, Object[] parametros, Connection conexion) throws MyException {
         List<T> listaDeObjetos = new ArrayList<>();
+        PreparedStatement sentencia = null;
         try {
             ResultSet filas;
             sentencia = conexion.prepareStatement(sql);
@@ -94,6 +93,7 @@ public class GestorConsultasSQL<T> {
     public int executeUpdate(String sql, Object[] parametros, Connection conexion) throws MyException {
 
         int filasAfectadas = 0;
+        PreparedStatement sentencia = null;
         try {
             sentencia = conexion.prepareStatement(sql);
 
@@ -105,7 +105,6 @@ public class GestorConsultasSQL<T> {
                     sentencia.setObject(i, parametros[i - 1]);
                 }
             }
-
             filasAfectadas = sentencia.executeUpdate();
         } catch (SQLException e) {
             throw new MyException("Error de SQL.", e);

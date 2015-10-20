@@ -6,7 +6,7 @@
 package DAO.Votante;
 
 import java.util.List;
-import Modelo.Votante;
+import Modelo.Negocio.Votante;
 
 /**
  *

@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.Proxy;
 
 import DAO.DAOFactory;
 import DAO.Usuario.UsuarioDAO;
+import Modelo.IUsuario;
 
 /**
  *
  * @author angelo
  */
-public class UsuarioProxy implements Usuario {
+public class UsuarioProxy implements IUsuario {
 
-    private Usuario usuarioReal;
+    private IUsuario usuarioReal;
     private int id_usuario;
 
-    private Usuario getSujetoReal() {
+    private IUsuario getSujetoReal() {
         if (usuarioReal == null) {
             DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
             UsuarioDAO dao = d.getUsuarioDAO();
@@ -64,6 +65,11 @@ public class UsuarioProxy implements Usuario {
     @Override
     public boolean isHabilitado() {
         return getSujetoReal().isHabilitado();
+    }
+
+    @Override
+    public String toString() {
+        return getSujetoReal().toString();
     }
 
 }

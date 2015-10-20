@@ -8,7 +8,7 @@ package DAO.Votante;
 import DAO.MYSQL.MYSQLDAOFactory;
 import java.util.List;
 import Modelo.Cantidad;
-import Modelo.Votante;
+import Modelo.Negocio.Votante;
 
 /**
  *

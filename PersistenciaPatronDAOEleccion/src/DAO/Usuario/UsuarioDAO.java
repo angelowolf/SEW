@@ -5,8 +5,7 @@
  */
 package DAO.Usuario;
 
-import java.util.List;
-import Modelo.Usuario;
+import Modelo.Negocio.Usuario;
 
 /**
  *

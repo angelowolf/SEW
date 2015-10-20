@@ -7,13 +7,15 @@ package DAO.Usuario;
 
 import DAO.MYSQL.MYSQLDAOFactory;
 import java.util.List;
-import Modelo.Usuario;
-import Modelo.UsuarioReal;
+;
+import Modelo.Negocio.Usuario;
 
 /**
  *
  * @author Angelo
  */
+
+
 public class UsuarioDAOMYSQL implements UsuarioDAO {
 
     @Override
@@ -52,7 +54,7 @@ public class UsuarioDAOMYSQL implements UsuarioDAO {
     public Usuario getUsuario(int id_usuario) {
         String sql = "SELECT * FROM usuario where id_usuario = ?";
         Object[] parametros = {id_usuario};
-        List<Usuario> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, UsuarioReal.class, parametros, MYSQLDAOFactory.getConnection());
+        List<Usuario> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, Usuario.class, parametros, MYSQLDAOFactory.getConnection());
         if (!lista.isEmpty()) {
             return lista.get(0);
         }

@@ -6,7 +6,7 @@
 package DAO.MesaResultado;
 
 import java.util.List;
-import Modelo.MesaResultado;
+import Modelo.Negocio.MesaResultado;
 
 /**
  *

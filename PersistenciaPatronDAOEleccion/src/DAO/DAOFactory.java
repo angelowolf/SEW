@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DAO.Cliente.ClienteDAO;
 import DAO.MYSQL.MYSQLDAOFactory;
 import DAO.SQLServer.SQLServerDAOFactory;
 import DAO.MesaResultado.MesaResultadoDAO;
@@ -25,6 +26,8 @@ public abstract class DAOFactory {
     public abstract UsuarioDAO getUsuarioDAO();
 
     public abstract MesaResultadoDAO getMesaResultadoDAO();
+
+    public abstract ClienteDAO getClienteDAO();
 
     /**
      * Devuelve una clase concreta de DAOFactory.

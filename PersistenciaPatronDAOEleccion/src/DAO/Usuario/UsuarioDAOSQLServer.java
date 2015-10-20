@@ -5,14 +5,23 @@
  */
 package DAO.Usuario;
 
-import java.util.List;
-import Modelo.Usuario;
+import Modelo.Negocio.Usuario;
 
 /**
  *
  * @author Angelo
  */
 public class UsuarioDAOSQLServer implements UsuarioDAO {
+
+    @Override
+    public Usuario getUsuario(String nick) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario getUsuario(int id_usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public boolean addUsuario(Usuario u) {
@@ -26,16 +35,6 @@ public class UsuarioDAOSQLServer implements UsuarioDAO {
 
     @Override
     public boolean eliminar(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Usuario getUsuario(String nick) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Usuario getUsuario(int id_usuario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
