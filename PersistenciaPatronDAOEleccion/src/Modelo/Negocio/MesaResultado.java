@@ -81,4 +81,7 @@ public class MesaResultado implements Serializable {
         this.cnt_nulo = cnt_nulo;
     }
 
+    public MesaResultado() {
+    }
+
 }
