@@ -4,6 +4,7 @@
     Author     : Angelo
 --%>
 
+<%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="com.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s" %>
@@ -35,7 +36,8 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li><a id="mnuResultadoEnVivo" href="resultadosEnVivo.jsp">Resultado En Vivo</a></li>
-                    <li><a id="mnuResultadoFinales" href="resultadosFinales.jsp">Resultados Finales</a></li>
+                    <li><s:url action="ResultadoFinal.action" var="urlRF" ></s:url>
+                        <a href="<s:property value="#urlRF" />" >Resultados Finales</a></li>
                     <li><a id="mnuCargarResultadosFinales" href="cargarResultadosFinales.jsp">Cargar Resultados Finales</a></li>                     
                     <li class='dropdown'>
                         <a class="dropdown-toggle" data-toggle="dropdown" id="mnuCargarVotosRealizados" href="#">Cargar Votos Realizados<span class="caret"></span>
@@ -93,6 +95,39 @@
             </div>
         </div>    
         <div class="container" style="padding-top: 60px;"> 
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>N°Mesa</th>
+                        <th>Candidato Oficial</th>
+                        <th>Candidato A</th>
+                        <th>Candidato B</th>
+                        <th>Votos Blancos</th>
+                        <th>Votos Nulos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <s:iterator value="resultados" var="cadaResultado">
+                        <tr>
+                            <td><s:property value="#cadaResultado.num_mesa"/></td>
+                            <td><s:property value="#cadaResultado.cnt_oficial"/></td>
+                            <td><s:property value="#cadaResultado.cnt_a"/></td>
+                            <td><s:property value="#cadaResultado.cnt_b"/></td>
+                            <td><s:property value="#cadaResultado.cnt_blanco"/></td>
+                            <td><s:property value="#cadaResultado.cnt_nulo"/></td>
+                        </tr>
+                    </s:iterator>
+                    <tr>
+                        <td>Total</td>
+                        <td><s:property value="total_oficial"/></td>
+                        <td><s:property value="total_a"/></td>
+                        <td><s:property value="total_b"/></td>
+                        <td><s:property value="total_blanco"/></td>
+                        <td><s:property value="total_nulo"/></td>
+                    </tr>
+                </tbody>
+            </table>
+
 
         </div>
     </div>

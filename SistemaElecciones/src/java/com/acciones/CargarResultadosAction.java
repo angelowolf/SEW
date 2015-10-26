@@ -19,7 +19,7 @@ import org.apache.struts2.convention.annotation.*;
  * @author angelo
  */
 @Results({
-    @Result(name = "success", location = "/resultadosFinales.jsp"),
+    @Result(name = "success", type = "redirect", location = "/ResultadoFinal"),
     @Result(name = "input", location = "/cargarResultadosFinales.jsp"),
     @Result(name = "error", location = "/error.jsp")
 })
