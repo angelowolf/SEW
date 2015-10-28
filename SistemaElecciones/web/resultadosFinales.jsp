@@ -25,11 +25,13 @@
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/canvasjs.min.js"></script>
+        <script type="text/javascript" src="js/GraficoBarraResultadoFinal.js"></script>
         <title>Carga De Votos</title>
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/stylesMenuDesplegable.css">
-
+        
     </head>
     <body>        
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -128,6 +130,7 @@
                 </tbody>
             </table>
 
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
         </div>
     </div>
