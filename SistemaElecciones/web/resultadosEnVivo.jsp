@@ -3,6 +3,8 @@
     Created on : 06-jul-2014, 19:50:42
     Author     : Angelo
 --%>
+<%@page import="java.util.List"%>
+<%@page import="Modelo.Negocio.Mesa"%>
 <%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="com.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -45,13 +47,14 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                int cantidadMesas = SingletonCantidadMesa.getInstancia().getCantidadMesas();
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                List<Mesa> lista = SingletonCantidadMesa.getInstancia().getMesas();
+                                for (Mesa m : lista) {
+                            %>
                             <li>                                    
                                 <s:url action="CargarVotos.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>             
@@ -65,12 +68,12 @@
                                 <a href='buscarVotanteSinVotar.jsp'><span>Buscar</span></a>
                             </li>                            
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="VotanteSinVotar.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>                               
@@ -81,12 +84,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="MarcarVotante.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>        
@@ -94,7 +97,7 @@
                     </li> 
                 </ul>   
             </div>
-        </div>        
+        </div>          
         <div class="container" style="padding-top: 60px;"> 
             <canvas id="canvas" height="500" width="500"></canvas>
         </div>       

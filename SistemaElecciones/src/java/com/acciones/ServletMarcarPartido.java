@@ -8,11 +8,7 @@ package com.acciones;
 import DAO.DAOFactory;
 import DAO.Votante.VotanteDAO;
 import Modelo.Negocio.Votante;
-import static com.opensymphony.xwork2.Action.SUCCESS;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.List;
-import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -30,18 +26,16 @@ import org.apache.struts2.convention.annotation.Result;
 public class ServletMarcarPartido extends ActionSupport {
 
     private static final Logger logger = Logger.getLogger(CargarVotosAction.class);
-    int numeroCheckBox;
+    int idVotante;
 
     @Override
     public String execute() {
         try {
-            DAO.DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            VotanteDAO DAOVotante = d.getVotanteDAO();
-            Map<String, Object> sesion = ActionContext.getContext().getSession();
-            List<Votante> votantes = (List<Votante>) sesion.get("votantes");
-            int mesa = (Integer) sesion.get("mesa");
-            votantes.get(numeroCheckBox).conmutarPartido();
-            DAOVotante.actualizarPartido(votantes.get(numeroCheckBox), mesa);
+            DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            VotanteDAO votanteDAO = d.getVotanteDAO();
+            Votante v = votanteDAO.getVotante(idVotante);
+            v.conmutarPartido();
+            votanteDAO.actualizarPartido(v);
         } catch (Exception e) {
             logger.error("Error al marcar partido.", e);
             return ERROR;
@@ -50,11 +44,18 @@ public class ServletMarcarPartido extends ActionSupport {
     }
 
     public int getNumeroCheckBox() {
-        return numeroCheckBox;
+        return idVotante;
     }
 
     public void setNumeroCheckBox(int numeroCheckBox) {
-        this.numeroCheckBox = numeroCheckBox;
+        this.idVotante = numeroCheckBox;
     }
+//    public int getIdVotante() {
+//        return idVotante;
+//    }
+//
+//    public void setIdVotante(int idVotante) {
+//        this.idVotante = idVotante;
+//    }
 
 }

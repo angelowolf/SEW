@@ -3,7 +3,7 @@
     Created on : 04-ago-2014, 18:23:58
     Author     : Angelo
 --%>
-
+<%@page import="Modelo.Negocio.Mesa"%>
 <%@page import="Modelo.Negocio.Votante"%>
 <%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="java.util.List"%>
@@ -46,13 +46,14 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                int cantidadMesas = SingletonCantidadMesa.getInstancia().getCantidadMesas();
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
-                            <li>                                                                                        
+                                List<Mesa> lista = SingletonCantidadMesa.getInstancia().getMesas();
+                                for (Mesa m : lista) {
+                            %>
+                            <li>                                    
                                 <s:url action="CargarVotos.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>             
@@ -66,12 +67,12 @@
                                 <a href='buscarVotanteSinVotar.jsp'><span>Buscar</span></a>
                             </li>                            
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="VotanteSinVotar.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>                               
@@ -82,12 +83,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="MarcarVotante.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>        
@@ -95,7 +96,7 @@
                     </li> 
                 </ul>   
             </div>
-        </div>         
+        </div>            
         <div class="container form-group" style="padding-top: 60px;"> 
             <div class="col-md-offset-2 col-md-10">
                 <s:form id="form_buscar_votante" action="buscar">
@@ -126,9 +127,9 @@
                         </tr>
                     </thead>
                     <tbody>                        
-                        <%                            List<Votante> lista = (List) sesion.getAttribute("votantes_busqueda");
-                            if (lista != null) {
-                                for (Votante votante : lista) {
+                        <%                            List<Votante> lista2 = (List) sesion.getAttribute("votantes_busqueda");
+                            if (lista2 != null) {
+                                for (Votante votante : lista2) {
                         %>
                         <tr>
                             <td>

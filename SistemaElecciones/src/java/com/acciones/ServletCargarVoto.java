@@ -29,18 +29,16 @@ import org.apache.struts2.convention.annotation.Result;
 public class ServletCargarVoto extends ActionSupport {
 
     private static final Logger logger = Logger.getLogger(CargarVotosAction.class);
-    int numeroCheckBox;
+    int idVotante;
 
     @Override
     public String execute() {
         try {
             DAO.DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
             VotanteDAO DAOVotante = d.getVotanteDAO();
-            Map<String, Object> sesion = ActionContext.getContext().getSession();
-            List<Votante> votantes = (List<Votante>) sesion.get("votantes");
-            int mesa = (Integer) sesion.get("mesa");
-            votantes.get(numeroCheckBox).conmutar();
-            DAOVotante.actualizarVoto(votantes.get(numeroCheckBox), mesa);
+            Votante v = DAOVotante.getVotante(idVotante);
+            v.conmutar();
+            DAOVotante.actualizarVoto(v);
         } catch (Exception e) {
             logger.error("Error al cargar voto de votante.", e);
             return ERROR;
@@ -49,11 +47,11 @@ public class ServletCargarVoto extends ActionSupport {
     }
 
     public int getNumeroCheckBox() {
-        return numeroCheckBox;
+        return idVotante;
     }
 
     public void setNumeroCheckBox(int numeroCheckBox) {
-        this.numeroCheckBox = numeroCheckBox;
+        this.idVotante = numeroCheckBox;
     }
 
 }

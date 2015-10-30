@@ -9,10 +9,8 @@ import DAO.DAOFactory;
 import DAO.Votante.VotanteDAO;
 import Modelo.Negocio.Votante;
 import static com.opensymphony.xwork2.Action.SUCCESS;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
-import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -38,10 +36,7 @@ public class MarcarVotanteAction extends ActionSupport {
         try {
             DAO.DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
             VotanteDAO DAOVotante = d.getVotanteDAO();
-            Map<String, Object> sesion = ActionContext.getContext().getSession();
             votantes = DAOVotante.getVotantes(mesa);
-            sesion.put("votantes", votantes);
-            sesion.put("mesa", mesa);
         } catch (Exception e) {
             logger.error("Error al marcar un voto.", e);
             return ERROR;
@@ -55,5 +50,13 @@ public class MarcarVotanteAction extends ActionSupport {
 
     public void setMesa(int mesa) {
         this.mesa = mesa;
+    }
+
+    public List<Votante> getVotantes() {
+        return votantes;
+    }
+
+    public void setVotantes(List<Votante> votantes) {
+        this.votantes = votantes;
     }
 }

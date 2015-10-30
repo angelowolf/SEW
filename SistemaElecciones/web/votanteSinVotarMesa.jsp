@@ -3,8 +3,10 @@
     Created on : 04-ago-2014, 18:24:10
     Author     : Angelo
 --%>
-<%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="java.util.List"%>
+<%@page import="Modelo.Negocio.Mesa"%>
+<%@page import="Modelo.Negocio.Usuario"%>
+<%@page import="com.modelo.*"%>
 <%@page import="com.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s" %>
@@ -44,13 +46,14 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                int cantidadMesas = SingletonCantidadMesa.getInstancia().getCantidadMesas();
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                List<Mesa> lista = SingletonCantidadMesa.getInstancia().getMesas();
+                                for (Mesa m : lista) {
+                            %>
                             <li>                                    
                                 <s:url action="CargarVotos.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>             
@@ -64,12 +67,12 @@
                                 <a href='buscarVotanteSinVotar.jsp'><span>Buscar</span></a>
                             </li>                            
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="VotanteSinVotar.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>                               
@@ -80,12 +83,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="MarcarVotante.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>        

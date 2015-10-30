@@ -1,15 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-function funcion_cargar_voto(boxName) {
+function funcion_cargar_voto(idVotante) {
 //                        alert("algo");
 //                        var atributos = 'mesa=' + numTable + '&numeroCheckBox=' + boxName;
-    var atributos = 'numeroCheckBox=' + boxName;
+    var atributos = 'idVotante=' + idVotante;
 
     $.ajax({
         async: false,
@@ -26,10 +18,10 @@ function funcion_cargar_voto(boxName) {
             alert(mensaje);
         }});
 }
-function funcion_marcar_partido(boxName) {
+function funcion_marcar_partido(idVotante) {
 //                        alert("algo");
 //                        var atributos = 'mesa=' + numTable + '&numeroCheckBox=' + boxName;
-    var atributos = 'numeroCheckBox=' + boxName;
+    var atributos = 'idVotante=' + idVotante;
 
     $.ajax({
         async: false,

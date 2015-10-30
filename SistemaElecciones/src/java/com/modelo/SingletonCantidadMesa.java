@@ -5,9 +5,13 @@
  */
 package com.modelo;
 
+import DAO.DAOFactory;
+import DAO.Mesa.MesaDAO;
+import Modelo.Negocio.Mesa;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,7 +21,7 @@ import java.util.Scanner;
 public class SingletonCantidadMesa {
 
     private static SingletonCantidadMesa instancia;
-    private int cantidadMesas;
+    private List<Mesa> cantidadMesas;
 
     /**
      * Instancia UNICA de la constante "CANTIDAD DE MESAS".
@@ -35,28 +39,18 @@ public class SingletonCantidadMesa {
      * Constructor PRIVADO de la clase.
      */
     private SingletonCantidadMesa() {
-        obtenerCantidad();
+        obtenerMesas();
     }
 
     /**
-     * Obtiene del archivo "CantidadMesas.txt" la constante de la cantidad de
-     * mesas que se utilizara. Puede lanzar FileNotFoundException si el archivo
-     * no existe, InputMismatchException si el valor que se encuentra en el
-     * archivo no es un numero.
+     * Obtiene las mesas desde la base de datos. Puede lanzar MyException si se
+     * produce algun error al intentar obtener las mesas desde la base de datos.
      */
-    private void obtenerCantidad() {
-        try {
-            String fileName = "C:/CantidadMesas.txt";
-            File f = new File(fileName);
-            Scanner sc = new Scanner(f);
-            while (sc.hasNextLine()) {
-                this.cantidadMesas = sc.nextInt();
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("El archivo no existe " + e.getMessage() + " " + e.toString());
-        } catch (InputMismatchException e) {
-            System.out.println("Error al obtener el valor del archivo. El documento no contiene un numero" + " " + e.toString());
-        }
+    private void obtenerMesas() {
+
+        DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        MesaDAO dao = d.getMesaDAO();
+        this.cantidadMesas = dao.getMesas();
     }
 
     /**
@@ -64,7 +58,7 @@ public class SingletonCantidadMesa {
      *
      * @return La cantidad de mesas.
      */
-    public int getCantidadMesas() {
+    public List<Mesa> getMesas() {
         return cantidadMesas;
     }
 

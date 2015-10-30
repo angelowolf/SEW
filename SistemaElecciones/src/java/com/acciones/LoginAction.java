@@ -56,7 +56,7 @@ public class LoginAction extends ActionSupport {
             return ERROR;
         }
         try {
-            com.modelo.SingletonCantidadMesa.getInstancia().getCantidadMesas();
+            com.modelo.SingletonCantidadMesa.getInstancia().getMesas();
         } catch (MyException e) {
             logger.error("Error al obtener cantidad de mesas", e);
             return ERROR;

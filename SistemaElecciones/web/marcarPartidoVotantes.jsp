@@ -3,10 +3,10 @@
     Created on : 04-ago-2014, 18:24:30
     Author     : Angelo
 --%>
-
 <%@page import="Modelo.Negocio.Votante"%>
-<%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="java.util.List"%>
+<%@page import="Modelo.Negocio.Mesa"%>
+<%@page import="Modelo.Negocio.Usuario"%>
 <%@page import="com.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s" %>
@@ -46,13 +46,14 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                int cantidadMesas = SingletonCantidadMesa.getInstancia().getCantidadMesas();
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                List<Mesa> lista = SingletonCantidadMesa.getInstancia().getMesas();
+                                for (Mesa m : lista) {
+                            %>
                             <li>                                    
                                 <s:url action="CargarVotos.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>             
@@ -66,12 +67,12 @@
                                 <a href='buscarVotanteSinVotar.jsp'><span>Buscar</span></a>
                             </li>                            
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="VotanteSinVotar.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>                               
@@ -82,12 +83,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <%
-                                for (int i = 1; i <= cantidadMesas; i++) {%>
+                                for (Mesa m : lista) {%>
                             <li>                                    
                                 <s:url action="MarcarVotante.action" var="urlTag" >
-                                    <s:param name="mesa"><%out.print(i);%></s:param>
+                                    <s:param name="mesa"><%out.print(m.getNumeroMesa());%></s:param>
                                 </s:url>
-                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(i);%></a>
+                                <a href="<s:property value="#urlTag" />" >Mesa <%out.print(m.getNumeroMesa());%></a>
                             </li>
                             <%
                                 }%>        
@@ -95,7 +96,7 @@
                     </li> 
                 </ul>   
             </div>
-        </div>    
+        </div>      
         <div class="container" style="padding-top: 60px;">        
             <fieldset>
                 <legend>
@@ -117,38 +118,25 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>                        
-                        <%
-                            List<Votante> lista = (List) sesion.getAttribute("votantes");
-                            int i = 0;
-
-                            for (Votante votante : lista) {
-                        %>
-                        <tr>
-                            <td>
-                                <%
-                                    out.print(votante.getNombre());%>
-                            </td>
-                            <td>
-                                <% out.print(votante.getDni());
-                                %>
-                            </td>
-                            <td>
-                                <%
-                                    if (votante.isPertenecePartido()) {
-                                %><INPUT TYPE=CHECKBOX NAME="<%out.print(i);%>" checked onclick="funcion_marcar_partido(this.name)">Seleccione si pertenece al partido<br><%
-                                } else {
-                                %><INPUT TYPE=CHECKBOX NAME="<%out.print(i);%>" onclick="funcion_marcar_partido(this.name)">Seleccione si pertenece al partido<br><%
-                                    }
-                                    i++;
-                                %>
-                            </td>
-                        </tr>
-                        <%
-                            }
-
-                        %>
-
+                    <tbody>                   
+                           <s:iterator value="votantes" var="cadaVotante"> 
+                            <tr>
+                                <td>
+                                    <s:property value="#cadaVotante.nombre"/>
+                                </td>
+                                <td>
+                                    <s:property value="#cadaVotante.dni"/>
+                                </td>
+                                <td>
+                                    <s:if test="%{#cadaVotante.pertenecePartido}">
+                                        <INPUT type=checkbox id="<s:property value="#cadaVotante.idVotante"/>" checked onclick="funcion_marcar_partido(this.id)"> Seleccione si pertenece al partido<br>
+                                    </s:if>
+                                    <s:else>
+                                        <INPUT type=checkbox id="<s:property value="#cadaVotante.idVotante"/>" onclick="funcion_marcar_partido(this.id)"> Seleccione si pertenece al partido<br>
+                                    </s:else>
+                                </td>
+                            </tr>
+                        </s:iterator>
                     </tbody>
                 </table>
             </div>
