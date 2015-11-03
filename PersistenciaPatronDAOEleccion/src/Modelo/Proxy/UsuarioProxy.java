@@ -33,7 +33,7 @@ public class UsuarioProxy implements IUsuario {
     }
 
     @Override
-    public void setId_usuario(int id_usuario) {
+    public void setIdUsuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
 
@@ -53,8 +53,8 @@ public class UsuarioProxy implements IUsuario {
     }
 
     @Override
-    public int getId_usuario() {
-        return getSujetoReal().getId_usuario();
+    public int getIdUsuario() {
+        return getSujetoReal().getIdUsuario();
     }
 
     @Override

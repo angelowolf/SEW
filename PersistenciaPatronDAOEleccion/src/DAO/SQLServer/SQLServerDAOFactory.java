@@ -5,11 +5,14 @@
  */
 package DAO.SQLServer;
 
+import DAO.Candidato.CandidatoDAO;
 import DAO.Cliente.ClienteDAO;
-import DAO.MesaResultado.MesaResultadoDAO;
+import DAO.Mesa.MesaDAO;
+import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
 import DAO.MotorBD;
 import DAO.Usuario.UsuarioDAO;
 import DAO.Votante.VotanteDAO;
+import Modelo.Negocio.Candidato;
 import java.sql.Connection;
 
 /**
@@ -33,13 +36,23 @@ public class SQLServerDAOFactory extends MotorBD {
     }
 
     @Override
-    public MesaResultadoDAO getMesaResultadoDAO() {
-        return new DAO.MesaResultado.MesaResultadoDAOSQLServer();
+    public VotosXMesaXCandidatoDAO getVotosXMesaXCandidato() {
+        return new DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoSQLServer();
     }
 
     @Override
     public ClienteDAO getClienteDAO() {
         return new DAO.Cliente.ClienteDAOSQLServer();
+    }
+
+    @Override
+    public MesaDAO getMesaDAO() {
+        return new DAO.Mesa.MesaDAOSQLServer();
+    }
+
+    @Override
+    public CandidatoDAO getCandidato() {
+        return new DAO.Candidato.CandidatoDAOSQLServer();
     }
 
 }

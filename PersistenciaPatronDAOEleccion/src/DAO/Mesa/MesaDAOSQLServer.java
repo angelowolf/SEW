@@ -3,24 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO.MesaResultado;
+package DAO.Mesa;
 
+import Modelo.Negocio.Mesa;
 import java.util.List;
-import Modelo.Negocio.MesaResultado;
 
 /**
  *
  * @author Angelo
  */
-public class MesaResultadoDAOSQLServer implements MesaResultadoDAO {
+public class MesaDAOSQLServer implements MesaDAO {
 
     @Override
-    public List<MesaResultado> getResultados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean cargarResultados(MesaResultado m) {
+    public List<Mesa> getMesas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -14,15 +14,6 @@ import Modelo.Negocio.Votante;
  */
 public class VotanteDAOSQLServer implements VotanteDAO {
 
-    @Override
-    public boolean actualizarPartido(Votante votante, int mesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean actualizarVoto(Votante votante, int mesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public List<Votante> getVotantes(int mesa) {
@@ -46,6 +37,21 @@ public class VotanteDAOSQLServer implements VotanteDAO {
 
     @Override
     public long getCantidadVotantes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Votante getVotante(int idVotante) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizarPartido(Votante votante) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizarVoto(Votante votante) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -13,36 +13,36 @@ import java.io.Serializable;
  */
 public class Votante implements Serializable {
 
-    private int id;
+    private int idVotante;
     private String nombre;
     private int dni;
     private boolean votoRealizado;
     private boolean pertenecePartido;
-    private int mesa;
+    private int numeroMesa;
 
     public Votante() {
     }
 
     @Override
     public String toString() {
-        return "Votante{" + "id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", votoRealizado=" + votoRealizado + ", pertenecePartido=" + pertenecePartido + ", mesa=" + mesa + '}';
+        return "Votante{" + "id=" + idVotante + ", nombre=" + nombre + ", dni=" + dni + ", votoRealizado=" + votoRealizado + ", pertenecePartido=" + pertenecePartido + ", mesa=" + numeroMesa + '}';
     }
 
-    public Votante(int id, String nombre, int dni, boolean votoRealizado, boolean pertenecePartido, int mesa) {
-        this.id = id;
+    public Votante(int idVotante, String nombre, int dni, boolean votoRealizado, boolean pertenecePartido, int numeroMesa) {
+        this.idVotante = idVotante;
         this.nombre = nombre;
         this.dni = dni;
         this.votoRealizado = votoRealizado;
         this.pertenecePartido = pertenecePartido;
-        this.mesa = mesa;
+        this.numeroMesa = numeroMesa;
     }
 
-    public int getMesa() {
-        return mesa;
+    public int getNumeroMesa() {
+        return numeroMesa;
     }
 
-    public void setMesa(int mesa) {
-        this.mesa = mesa;
+    public void setNumeroMesa(int numeroMesa) {
+        this.numeroMesa = numeroMesa;
     }
 
     public boolean isPertenecePartido() {
@@ -51,14 +51,6 @@ public class Votante implements Serializable {
 
     public void setPertenecePartido(boolean pertenecePartido) {
         this.pertenecePartido = pertenecePartido;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int int_partido() {
@@ -102,18 +94,18 @@ public class Votante implements Serializable {
     }
 
     public void conmutar() {
-        if (votoRealizado) {
-            votoRealizado = false;
-        } else {
-            votoRealizado = true;
-        }
+        votoRealizado = !votoRealizado;
     }
 
     public void conmutarPartido() {
-        if (pertenecePartido) {
-            pertenecePartido = false;
-        } else {
-            pertenecePartido = true;
-        }
+        pertenecePartido = !pertenecePartido;
+    }
+
+    public int getIdVotante() {
+        return idVotante;
+    }
+
+    public void setIdVotante(int idVotante) {
+        this.idVotante = idVotante;
     }
 }

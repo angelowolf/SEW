@@ -5,10 +5,12 @@
  */
 package DAO;
 
+import DAO.Candidato.CandidatoDAO;
 import DAO.Cliente.ClienteDAO;
 import DAO.MYSQL.MYSQLDAOFactory;
+import DAO.Mesa.MesaDAO;
 import DAO.SQLServer.SQLServerDAOFactory;
-import DAO.MesaResultado.MesaResultadoDAO;
+import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
 import DAO.Usuario.UsuarioDAO;
 import DAO.Votante.VotanteDAO;
 
@@ -25,9 +27,13 @@ public abstract class DAOFactory {
 
     public abstract UsuarioDAO getUsuarioDAO();
 
-    public abstract MesaResultadoDAO getMesaResultadoDAO();
+    public abstract VotosXMesaXCandidatoDAO getVotosXMesaXCandidato();
 
     public abstract ClienteDAO getClienteDAO();
+
+    public abstract CandidatoDAO getCandidato();
+
+    public abstract MesaDAO getMesaDAO();
 
     /**
      * Devuelve una clase concreta de DAOFactory.

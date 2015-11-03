@@ -14,9 +14,11 @@ import Modelo.Negocio.Votante;
  */
 public interface VotanteDAO {
 
-    public boolean actualizarPartido(Votante votante, int mesa);
+    public boolean actualizarPartido(Votante votante);
 
-    public boolean actualizarVoto(Votante votante, int mesa);
+    public boolean actualizarVoto(Votante votante);
+
+    public Votante getVotante(int idVotante);
 
     public List<Votante> getVotantes(int mesa);
 

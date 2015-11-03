@@ -11,7 +11,7 @@ package Modelo;
  */
 public interface IUsuario {
 
-    public void setId_usuario(int id_usuario);
+    public void setIdUsuario(int id_usuario);
 
     public void setNick(String nick);
 
@@ -19,7 +19,7 @@ public interface IUsuario {
 
     public void setHabilitado(boolean habilitado);
 
-    public int getId_usuario();
+    public int getIdUsuario();
 
     public String getNick();
 

@@ -5,8 +5,10 @@
  */
 package DAO.MYSQL;
 
+import DAO.Candidato.CandidatoDAO;
 import DAO.Cliente.ClienteDAO;
-import DAO.MesaResultado.MesaResultadoDAO;
+import DAO.Mesa.MesaDAO;
+import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
 import DAO.MotorBD;
 import DAO.Usuario.UsuarioDAO;
 import DAO.Votante.VotanteDAO;
@@ -33,13 +35,23 @@ public class MYSQLDAOFactory extends MotorBD {
     }
 
     @Override
-    public MesaResultadoDAO getMesaResultadoDAO() {
-        return new DAO.MesaResultado.MesaResultadoDAOMYSQL();
+    public VotosXMesaXCandidatoDAO getVotosXMesaXCandidato() {
+        return new DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoMYSQL();
     }
 
     @Override
     public ClienteDAO getClienteDAO() {
         return new DAO.Cliente.ClienteDAOMYSQL();
+    }
+
+    @Override
+    public MesaDAO getMesaDAO() {
+        return new DAO.Mesa.MesaDAOMYSQL();
+    }
+
+    @Override
+    public CandidatoDAO getCandidato() {
+        return new DAO.Candidato.CandidatoDAOMYSQL();
     }
 
 }

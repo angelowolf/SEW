@@ -39,14 +39,14 @@ public class UsuarioDAOMYSQL implements UsuarioDAO {
     @Override
     public boolean habilitar(Usuario u) {
         String sql = "UPDATE usuario set habilitado = 0 WHERE id_usuario = ?";
-        Object[] parametros = {u.getId_usuario()};
+        Object[] parametros = {u.getIdUsuario()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 
     @Override
     public boolean eliminar(Usuario u) {
         String sql = "DELTE FROM usuario where id_usuario = ?";
-        Object[] parametros = {u.getId_usuario()};
+        Object[] parametros = {u.getIdUsuario()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 

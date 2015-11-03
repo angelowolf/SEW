@@ -36,14 +36,14 @@ public class ClienteDAOMYSQL implements ClienteDAO {
                     sentencia.setObject(i, parametros[i - 1]);
                 }
             }
-            
+
             filas = sentencia.executeQuery();
-            
+
             while (filas.next()) {
                 cliente.setApellido(filas.getString("apellido"));
-                cliente.setId_cliente(filas.getInt("id_cliente"));
+                cliente.setIdCliente(filas.getInt("id_cliente"));
                 cliente.setNombre(filas.getString("nombre"));
-                cliente.getUsuario().setId_usuario(filas.getInt("id_usuario"));
+                cliente.getUsuario().setIdUsuario(filas.getInt("id_usuario"));
             }
             filas.close();
         } catch (SQLException ex) {

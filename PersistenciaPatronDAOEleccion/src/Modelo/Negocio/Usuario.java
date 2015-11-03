@@ -13,12 +13,12 @@ import Modelo.IUsuario;
  */
 public class Usuario implements IUsuario {
 
-    private int id_usuario;
+    private int idUsuario;
     private String nick, clave;
     private boolean habilitado;
 
     public Usuario(int id_usuario, String nick, String clave, boolean habilitado) {
-        this.id_usuario = id_usuario;
+        this.idUsuario = id_usuario;
         this.nick = nick;
         this.clave = clave;
         this.habilitado = habilitado;
@@ -33,8 +33,8 @@ public class Usuario implements IUsuario {
     }
 
     @Override
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(int id_usuario) {
+        this.idUsuario = id_usuario;
     }
 
     @Override
@@ -53,8 +53,8 @@ public class Usuario implements IUsuario {
     }
 
     @Override
-    public int getId_usuario() {
-        return id_usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Usuario implements IUsuario {
 
     @Override
     public String toString() {
-        return "UsuarioReal{" + "id_usuario=" + id_usuario + ", nick=" + nick + ", clave=" + clave + ", habilitado=" + habilitado + '}';
+        return "UsuarioReal{" + "id_usuario=" + idUsuario + ", nick=" + nick + ", clave=" + clave + ", habilitado=" + habilitado + '}';
     }
 
 }

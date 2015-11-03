@@ -14,7 +14,7 @@ import Modelo.Proxy.UsuarioProxy;
  */
 public class Cliente {
 
-    private int id_cliente;
+    private int idCliente;
     private String nombre, apellido;
     private IUsuario usuario;
 
@@ -23,7 +23,7 @@ public class Cliente {
     }
 
     public Cliente(int id_cliente, String nombre, String apellido) {
-        this.id_cliente = id_cliente;
+        this.idCliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.iniciarUsuario();
@@ -31,7 +31,7 @@ public class Cliente {
     }
 
     public Cliente(int id_cliente, String nombre, String apellido, IUsuario u) {
-        this.id_cliente = id_cliente;
+        this.idCliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.iniciarUsuario();
@@ -41,12 +41,12 @@ public class Cliente {
         this.usuario = new UsuarioProxy();
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -75,7 +75,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario.toString() + '}';
+        return "Cliente{" + "id_cliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario.toString() + '}';
     }
 
 }
