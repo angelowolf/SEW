@@ -5,11 +5,18 @@
  */
 package com.acciones;
 
+import DAO.Candidato.CandidatoDAO;
 import DAO.DAOFactory;
-import DAO.MesaResultado.MesaResultadoDAO;
+import DAO.Mesa.MesaDAO;
+import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
 import DAO.MyException;
-import Modelo.Negocio.MesaResultado;
+import Modelo.Negocio.Candidato;
+import Modelo.Negocio.Mesa;
+import Modelo.Negocio.VotosXMesaXCandidato;
+import com.modelo.ResultadoCadaMesa;
+import com.modelo.Total;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
@@ -27,24 +34,46 @@ import org.apache.struts2.convention.annotation.Results;
 
 public class ResultadoFinalAction extends ActionSupport {
 
-    private int total_oficial, total_a, total_b, total_blanco, total_nulo;
+    private List<Candidato> candidatos;
+
     private static final Logger logger = Logger.getLogger(ResultadoFinalAction.class);
-    private List<MesaResultado> resultados;
+    private List<Total> totales;
+    private List<Mesa> mesas;
+    List<ResultadoCadaMesa> resultadaDeCadaMesa;
 
     @Override
     @Action(value = "/ResultadoFinal")
+
     public String execute() {
         try {
+            resultadaDeCadaMesa = new ArrayList<ResultadoCadaMesa>();
             DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            MesaResultadoDAO dao = d.getMesaResultadoDAO();
-            resultados = dao.getResultados();
-            for (MesaResultado resultado : resultados) {
-                total_oficial += resultado.getCnt_oficial();
-                total_a += resultado.getCnt_a();
-                total_b += resultado.getCnt_b();
-                total_blanco += resultado.getCnt_blanco();
-                total_nulo += resultado.getCnt_nulo();
+            VotosXMesaXCandidatoDAO daoVMC = d.getVotosXMesaXCandidato();
+            CandidatoDAO daoCandidato = d.getCandidato();
+            MesaDAO daoMesa = d.getMesaDAO();
+            mesas = daoMesa.getMesas();
+            candidatos = daoCandidato.getCandidatos();
+
+            for (Mesa cadaMesa : mesas) {
+                List<VotosXMesaXCandidato> votosPorMesa = daoVMC.getResultados(cadaMesa.getNumeroMesa());
+                ResultadoCadaMesa rcm = new ResultadoCadaMesa();
+                rcm.setNumeroMesa(cadaMesa.getNumeroMesa());
+                rcm.setResultado(votosPorMesa);
+                resultadaDeCadaMesa.add(rcm);
             }
+
+            totales = new ArrayList<Total>();
+            for (Candidato cadaCandidato : candidatos) {
+                List<VotosXMesaXCandidato> votosPorCandidato = daoVMC.getResultadosPorCandidato(cadaCandidato.getIdCandidato());
+                int total = 0;
+                for (VotosXMesaXCandidato cadaVotoPorCandidato : votosPorCandidato) {
+                    total += cadaVotoPorCandidato.getCantidad();
+                }
+                Total t = new Total();
+                t.setTotal(total);
+                totales.add(t);
+            }
+
             return SUCCESS;
         } catch (MyException e) {
             logger.error("Error al cargar resultados finales.", e);
@@ -52,27 +81,16 @@ public class ResultadoFinalAction extends ActionSupport {
         }
     }
 
-    public int getTotal_oficial() {
-        return total_oficial;
+    public List<Candidato> getCandidatos() {
+        return candidatos;
     }
 
-    public int getTotal_a() {
-        return total_a;
+    public List<ResultadoCadaMesa> getResultadaDeCadaMesa() {
+        return resultadaDeCadaMesa;
     }
 
-    public int getTotal_b() {
-        return total_b;
+    public List<Total> getTotales() {
+        return totales;
     }
 
-    public int getTotal_blanco() {
-        return total_blanco;
-    }
-
-    public int getTotal_nulo() {
-        return total_nulo;
-    }
-
-    public List<MesaResultado> getResultados() {
-        return resultados;
-    }
 }

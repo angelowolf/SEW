@@ -10,6 +10,7 @@ package com.modelo;
  * @author Angelo
  */
 public class Total implements Comparable<Total> {
+
     private int total;
     private String label;
 
@@ -17,7 +18,11 @@ public class Total implements Comparable<Total> {
         this.total = total;
         this.label = label;
     }
-    
+
+    public Total() {
+
+    }
+
     public int getTotal() {
         return total;
     }
@@ -36,7 +41,10 @@ public class Total implements Comparable<Total> {
 
     @Override
     public int compareTo(Total o) {
-        if (o.total >= this.total) return -1;
-        else return 1;
+        if (o.total >= this.total) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

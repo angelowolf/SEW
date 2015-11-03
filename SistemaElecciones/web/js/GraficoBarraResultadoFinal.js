@@ -5,13 +5,10 @@ window.onload = function () {
             url: "Grafico_Dos",
             dataType: "json",
             success: function (resultadoJsonData) {
-                dataPoints = [
-                    {y: resultadoJsonData[0].total, label: '' + resultadoJsonData[0].label},
-                    {y: resultadoJsonData[1].total, label: '' + resultadoJsonData[1].label},
-                    {y: resultadoJsonData[2].total, label: '' + resultadoJsonData[2].label},
-                    {y: resultadoJsonData[3].total, label: '' + resultadoJsonData[3].label},
-                    {y: resultadoJsonData[4].total, label: '' + resultadoJsonData[4].label}
-                ];
+                dataPoints = [];
+                for (i = 0; i < resultadoJsonData.length; i++) { 
+                    dataPoints.push({y: resultadoJsonData[i].total, label: '' + resultadoJsonData[i].label});
+                }
             }
         });
         return dataPoints;

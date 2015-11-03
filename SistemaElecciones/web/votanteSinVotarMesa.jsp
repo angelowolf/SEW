@@ -40,7 +40,8 @@
                     <li><a id="mnuResultadoEnVivo" href="resultadosEnVivo.jsp">Resultado En Vivo</a></li>
                     <li><s:url action="ResultadoFinal.action" var="urlRF" ></s:url>
                         <a href="<s:property value="#urlRF" />" >Resultados Finales</a></li>
-                    <li><a id="mnuCargarResultadosFinales" href="cargarResultadosFinales.jsp">Cargar Resultados Finales</a></li>                     
+                    <li><s:url action="formularioResultado" var="urlRF" ></s:url>
+                        <a href="<s:property value="#urlRF" />" >Cargar Resultados Finales</a></li>
                     <li class='dropdown'>
                         <a class="dropdown-toggle" data-toggle="dropdown" id="mnuCargarVotosRealizados" href="#">Cargar Votos Realizados<span class="caret"></span>
                         </a>
@@ -96,7 +97,7 @@
                     </li> 
                 </ul>   
             </div>
-        </div>    
+        </div>        
         <div class="container" style="padding-top: 60px;">        
             <fieldset>
                 <legend>

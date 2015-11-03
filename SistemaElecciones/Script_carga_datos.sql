@@ -9,7 +9,7 @@ insert into mesa(numeroMesa) values (11);
 insert into mesa(numeroMesa) values (12);
 insert into mesa(numeroMesa) values (13);
 insert into mesa(numeroMesa) values (14);
-insert into cantidad_votos_por_mesa_candidato (idCandidato,numeroMesa,cantidad) values (1,10,0);
+insert into cantidad_votos_por_mesa_candidato (idCandidato,numeroMesa,cantidad) values (1,10,15);
 insert into cantidad_votos_por_mesa_candidato (idCandidato,numeroMesa,cantidad) values (1,11,0);
 insert into cantidad_votos_por_mesa_candidato (idCandidato,numeroMesa,cantidad) values (1,12,0);
 insert into cantidad_votos_por_mesa_candidato (idCandidato,numeroMesa,cantidad) values (1,13,0);

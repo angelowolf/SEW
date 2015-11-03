@@ -45,22 +45,22 @@ create table cantidad_votos_por_mesa_candidato
 
 create table usuario
 (
-	id_usuario INT not null auto_increment,
+	idUsuario INT not null auto_increment,
 	nick varchar(45) not null,
         clave varchar(45) not null,
         habilitado TINYINT(1) not null, 
-        primary key (id_usuario)
+        primary key (idUsuario)
 );
 
 create table cliente
 (
-	id_cliente INT not null auto_increment,
+	idCliente INT not null auto_increment,
 	nombre varchar(45) not null,
         apellido varchar(45) not null,
-        id_usuario INT not null,
+        idUsuario INT not null,
         email varchar(50) not null,
-        primary key (id_cliente),
-        constraint fk_id_usuario foreign key (id_usuario) references usuario (id_usuario)
+        primary key (idCliente),
+        constraint fk_id_usuario foreign key (idUsuario) references usuario (idUsuario)
 );
 
 

@@ -39,7 +39,8 @@
                     <li><a id="mnuResultadoEnVivo" href="resultadosEnVivo.jsp">Resultado En Vivo</a></li>
                     <li><s:url action="ResultadoFinal.action" var="urlRF" ></s:url>
                         <a href="<s:property value="#urlRF" />" >Resultados Finales</a></li>
-                    <li><a id="mnuCargarResultadosFinales" href="cargarResultadosFinales.jsp">Cargar Resultados Finales</a></li>                     
+                    <li><s:url action="formularioResultado" var="urlRF" ></s:url>
+                        <a href="<s:property value="#urlRF" />" >Cargar Resultados Finales</a></li>
                     <li class='dropdown'>
                         <a class="dropdown-toggle" data-toggle="dropdown" id="mnuCargarVotosRealizados" href="#">Cargar Votos Realizados<span class="caret"></span>
                         </a>
@@ -95,37 +96,29 @@
                     </li> 
                 </ul>   
             </div>
-        </div>      
+        </div>           
         <div class="container" style="padding-top: 60px;"> 
             <div class="form-group col-md-8 col-md-offset-2">
                 <s:actionerror theme="bootstrap"/>
                 <s:actionmessage theme="bootstrap"/>
                 <s:fielderror theme="bootstrap"/>
                 <s:form action="cargar_resultados" method="post" validate="true"enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
-
-                    <!--                <div class="col-md-2">
-                                        <label>Numero Mesa</label>
-                                    </div>-->
                     <div class="col-md-4">
                         <s:textfield name="num_mesa" label="Numero Mesa"/>
                     </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Candidato Oficial</th>
-                                <th>Candidato A</th>
-                                <th>Candidato B</th>
-                                <th>Blancos</th>
-                                <th>Nulo</th>
+                                <s:iterator value="candidatos" var="cadaCandidato">
+                                    <th><s:property value="#cadaCandidato.nombre"/></th>
+                                </s:iterator>     
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th><s:textfield name="cnt_oficial" /></th>
-                                <th><s:textfield name="cnt_a" /></th>
-                                <th><s:textfield name="cnt_b" /></th>
-                                <th><s:textfield name="cnt_blanco" /></th>
-                                <th><s:textfield name="cnt_null" /></th>
+                                <s:iterator value="candidatos" var="cadaCandidato">
+                                    <td><s:textfield name="%{#cadaCandidato.idCandidato}" value="" /></td>
+                                </s:iterator>                               
                             </tr>
                         </tbody>
                     </table>

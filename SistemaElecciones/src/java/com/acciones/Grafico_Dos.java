@@ -5,9 +5,11 @@
  */
 package com.acciones;
 
+import DAO.Candidato.CandidatoDAO;
 import DAO.DAOFactory;
-import DAO.MesaResultado.MesaResultadoDAO;
-import Modelo.Negocio.MesaResultado;
+import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
+import Modelo.Negocio.Candidato;
+import Modelo.Negocio.VotosXMesaXCandidato;
 import com.google.gson.Gson;
 import com.modelo.Total;
 import static com.opensymphony.xwork2.Action.ERROR;
@@ -29,10 +31,13 @@ import org.apache.struts2.convention.annotation.Results;
     @Result(name = "error", location = "/error.jsp")
 })
 public class Grafico_Dos extends ActionSupport {
+
     private static final Logger logger = Logger.getLogger(Grafico_Dos.class);
     DAO.DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-    MesaResultadoDAO dm = d.getMesaResultadoDAO();
-    
+    VotosXMesaXCandidatoDAO dm = d.getVotosXMesaXCandidato();
+    CandidatoDAO daoCandidato = d.getCandidato();
+    VotosXMesaXCandidatoDAO daoVMC = d.getVotosXMesaXCandidato();
+
     @Override
     @Action(value = "Grafico_Dos")
     public String execute() {
@@ -50,32 +55,21 @@ public class Grafico_Dos extends ActionSupport {
     }
 
     private List<Total> getTotales() {
-        List<Total> listaTotales = new ArrayList<Total>();
-        
-        List<MesaResultado> listaMesa = dm.getResultados();
-        
-        int cant_a = 0;
-        int cant_b = 0;
-        int cant_blanco = 0;
-        int cant_nulo = 0;
-        int cant_oficial = 0;
-        
-        for (MesaResultado mesa : listaMesa) {
-            cant_a += mesa.getCnt_a();
-            cant_b += mesa.getCnt_b();
-            cant_blanco += mesa.getCnt_blanco();
-            cant_nulo += mesa.getCnt_nulo();
-            cant_oficial += mesa.getCnt_oficial();
+        List<Total> totales = new ArrayList<Total>();
+        List<Candidato> candidatos = daoCandidato.getCandidatos();
+        for (Candidato cadaCandidato : candidatos) {
+            List<VotosXMesaXCandidato> votosPorCandidato = daoVMC.getResultadosPorCandidato(cadaCandidato.getIdCandidato());
+            int total = 0;
+            for (VotosXMesaXCandidato cadaVotoPorCandidato : votosPorCandidato) {
+                total += cadaVotoPorCandidato.getCantidad();
+            }
+            Total t = new Total();
+            t.setTotal(total);
+            t.setLabel(cadaCandidato.getNombre());
+            totales.add(t);
         }
-        
-        listaTotales.add(new Total(cant_a, "Candidato A"));
-        listaTotales.add(new Total(cant_b, "Candidato B"));
-        listaTotales.add(new Total(cant_blanco, "Blanco"));
-        listaTotales.add(new Total(cant_nulo, "Nulo"));
-        listaTotales.add(new Total(cant_oficial, "Candidato Oficial"));
-        
-        listaTotales.sort(null);
-        
-        return listaTotales;
+        totales.sort(null);
+
+        return totales;
     }
 }

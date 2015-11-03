@@ -41,7 +41,8 @@
                     <li><a id="mnuResultadoEnVivo" href="resultadosEnVivo.jsp">Resultado En Vivo</a></li>
                     <li><s:url action="ResultadoFinal.action" var="urlRF" ></s:url>
                         <a href="<s:property value="#urlRF" />" >Resultados Finales</a></li>
-                    <li><a id="mnuCargarResultadosFinales" href="cargarResultadosFinales.jsp">Cargar Resultados Finales</a></li>                     
+                    <li><s:url action="formularioResultado" var="urlRF" ></s:url>
+                        <a href="<s:property value="#urlRF" />" >Cargar Resultados Finales</a></li>
                     <li class='dropdown'>
                         <a class="dropdown-toggle" data-toggle="dropdown" id="mnuCargarVotosRealizados" href="#">Cargar Votos Realizados<span class="caret"></span>
                         </a>
@@ -97,37 +98,36 @@
                     </li> 
                 </ul>   
             </div>
-        </div>     
+        </div>         
         <div class="container" style="padding-top: 60px;"> 
             <table class="table table-condensed">
                 <thead>
                     <tr>
                         <th>N°Mesa</th>
-                        <th>Candidato Oficial</th>
-                        <th>Candidato A</th>
-                        <th>Candidato B</th>
-                        <th>Votos Blancos</th>
-                        <th>Votos Nulos</th>
+                            <s:iterator value="candidatos" var="cadaCandidato">
+                            <th><s:property value="#cadaCandidato.nombre"/></th>
+                            </s:iterator>
+                        <!--                        <th>Candidato Oficial</th>
+                                                <th>Candidato A</th>
+                                                <th>Candidato B</th>
+                                                <th>Votos Blancos</th>
+                                                <th>Votos Nulos</th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <s:iterator value="resultados" var="cadaResultado">
+                    <s:iterator value="resultadaDeCadaMesa" var="cadaMesa">
                         <tr>
-                            <td><s:property value="#cadaResultado.num_mesa"/></td>
-                            <td><s:property value="#cadaResultado.cnt_oficial"/></td>
-                            <td><s:property value="#cadaResultado.cnt_a"/></td>
-                            <td><s:property value="#cadaResultado.cnt_b"/></td>
-                            <td><s:property value="#cadaResultado.cnt_blanco"/></td>
-                            <td><s:property value="#cadaResultado.cnt_nulo"/></td>
+                            <td><s:property value="#cadaMesa.numeroMesa"/></td>
+                            <s:iterator value="#cadaMesa.resultado" var="resultado">
+                                <td><s:property value="#resultado.cantidad"/></td>    
+                            </s:iterator>
                         </tr>
                     </s:iterator>
                     <tr>
                         <td>Total</td>
-                        <td><s:property value="total_oficial"/></td>
-                        <td><s:property value="total_a"/></td>
-                        <td><s:property value="total_b"/></td>
-                        <td><s:property value="total_blanco"/></td>
-                        <td><s:property value="total_nulo"/></td>
+                        <s:iterator value="totales" var="cadaTotal">
+                            <td><s:property value="#cadaTotal.total"/></td>
+                        </s:iterator>
                     </tr>
                 </tbody>
             </table>
