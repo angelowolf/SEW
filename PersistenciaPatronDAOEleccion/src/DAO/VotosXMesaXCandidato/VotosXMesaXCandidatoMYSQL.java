@@ -30,7 +30,7 @@ public class VotosXMesaXCandidatoMYSQL implements VotosXMesaXCandidatoDAO {
     @Override
     public boolean cargarResultados(VotosXMesaXCandidato m) throws MyException {
         String sql = "UPDATE cantidad_votos_por_mesa_candidato SET cantidad = ? WHERE numeroMesa = ? and idCandidato = ? ";
-        Object[] parametros = {m.getCantidad(), m.getNumeroMesa(), m.getNumeroMesa()};
+        Object[] parametros = {m.getCantidad(), m.getNumeroMesa(), m.getIdCandidato()};
         try {
             return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
         } catch (MyException e) {

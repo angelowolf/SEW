@@ -7,17 +7,22 @@ package Modelo.Negocio;
 
 /**
  *
- * @author Angelo
+ * @author angelo
  */
-public class Mesa {
+public class MesaCantidad {
 
+    private long cantidad;
     private int numeroMesa;
 
-    public Mesa() {
+    public MesaCantidad() {
     }
 
-    public Mesa(int numeroMesa) {
-        this.numeroMesa = numeroMesa;
+    public long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(long cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getNumeroMesa() {
@@ -26,11 +31,6 @@ public class Mesa {
 
     public void setNumeroMesa(int numeroMesa) {
         this.numeroMesa = numeroMesa;
-    }
-
-    @Override
-    public String toString() {
-        return "" + getNumeroMesa();
     }
 
 }

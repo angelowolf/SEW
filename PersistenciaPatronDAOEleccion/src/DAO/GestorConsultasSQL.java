@@ -53,7 +53,6 @@ public class GestorConsultasSQL<T> {
             }
             filas.close();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
-
             throw new MyException("Error al seleccionar registros.", e);
         } catch (SQLNonTransientConnectionException e) {
             throw new MyException("El servidor no esta iniciado.", e);
@@ -97,10 +96,7 @@ public class GestorConsultasSQL<T> {
         try {
             sentencia = conexion.prepareStatement(sql);
 
-            if (parametros == null) {
-                throw new MyException("Parametros es null.");
-
-            } else {
+            if (parametros != null) {
                 for (int i = 1; i < parametros.length + 1; i++) {
                     sentencia.setObject(i, parametros[i - 1]);
                 }
