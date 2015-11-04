@@ -43,19 +43,12 @@ public class ServletMarcarPartido extends ActionSupport {
         return null;
     }
 
-    public int getNumeroCheckBox() {
+    public int getIdVotante() {
         return idVotante;
     }
 
-    public void setNumeroCheckBox(int numeroCheckBox) {
-        this.idVotante = numeroCheckBox;
+    public void setIdVotante(int idVotante) {
+        this.idVotante = idVotante;
     }
-//    public int getIdVotante() {
-//        return idVotante;
-//    }
-//
-//    public void setIdVotante(int idVotante) {
-//        this.idVotante = idVotante;
-//    }
 
 }

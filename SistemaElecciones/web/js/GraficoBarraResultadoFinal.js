@@ -6,7 +6,7 @@ window.onload = function () {
             dataType: "json",
             success: function (resultadoJsonData) {
                 dataPoints = [];
-                for (i = 0; i < resultadoJsonData.length; i++) { 
+                for (i = 0; i < resultadoJsonData.length; i++) {
                     dataPoints.push({y: resultadoJsonData[i].total, label: '' + resultadoJsonData[i].label});
                 }
             }
@@ -16,7 +16,7 @@ window.onload = function () {
 
     var chart = new CanvasJS.Chart("chartContainer", {
         title: {
-            text: "Gráfico"
+            text: "Cantidad De Votos Por Candidatos"
         },
         animationEnabled: true,
         axisX: {

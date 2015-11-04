@@ -40,7 +40,7 @@ var Script_Uno = {
                     pointLabelFontSize: 10,
                     animationSteps: 250, //cantidad de pasos en la animacion
                     segmentShowStroke: false, //linea blanca entre las tortas
-                    animateRotate: true//animacion de rotacion al crear
+                    animateRotate: false//animacion de rotacion al crear
                 });
         return myPie;
     },
@@ -108,9 +108,9 @@ var Script_Dos = {
 
 $(document).ready(function () {
     Script_Uno.initPieChart();
-    setInterval(function () {
-        Script_Uno.initPieChart();
-    }, 5000);
+        setInterval(function () {
+            Script_Uno.initPieChart();
+        }, 5000);
 //
 //    Script_Dos.initRadarChart2();
 //    setInterval(function () {

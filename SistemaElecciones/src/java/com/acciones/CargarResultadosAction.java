@@ -5,17 +5,16 @@
  */
 package com.acciones;
 
-import DAO.Candidato.CandidatoDAO;
 import DAO.DAOFactory;
 import DAO.VotosXMesaXCandidato.VotosXMesaXCandidatoDAO;
 import DAO.MyException;
-import Modelo.Negocio.Candidato;
 import com.opensymphony.xwork2.ActionSupport;
 import Modelo.Negocio.VotosXMesaXCandidato;
-import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
 
 import org.apache.struts2.convention.annotation.*;
+import org.apache.struts2.interceptor.ParameterAware;
 
 /**
  *
@@ -26,12 +25,12 @@ import org.apache.struts2.convention.annotation.*;
     @Result(name = "input", location = "/cargarResultadosFinales.jsp"),
     @Result(name = "error", location = "/error.jsp")
 })
-public class CargarResultadosAction extends ActionSupport {
+public class CargarResultadosAction extends ActionSupport implements ParameterAware {
 
     private DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
     private static final Logger logger = Logger.getLogger(CargarResultadosAction.class);
+    private Map<String, String[]> parametros;
     private int num_mesa;
-    private List<Candidato> candidatos;
 
     @Override
     @Action(value = "/cargar_resultados")
@@ -40,10 +39,20 @@ public class CargarResultadosAction extends ActionSupport {
 
             VotosXMesaXCandidatoDAO dao = d.getVotosXMesaXCandidato();
             VotosXMesaXCandidato mr = new VotosXMesaXCandidato();
-            //dao.cargarResultados(mr);
-            CandidatoDAO candidatoDAO = d.getCandidato();
-            candidatos = candidatoDAO.getCandidatos();
-            return INPUT;
+            for (Map.Entry<String, String[]> entrySet : parametros.entrySet()) {
+                String key = entrySet.getKey();
+                String[] value = entrySet.getValue();
+                if (key.compareTo("num_mesa") != 0) {
+                    int i = Integer.parseInt(value[0]);
+                    mr.setCantidad(i);
+                    mr.setNumeroMesa(num_mesa);
+                    mr.setIdCandidato(Integer.parseInt(key));
+                    System.out.println(mr.toString());
+                    boolean b = dao.cargarResultados(mr);
+                    System.out.println(b);
+                }
+            }
+            return SUCCESS;
         } catch (MyException e) {
             logger.error("Error al cargar resultados.", e);
             return ERROR;
@@ -52,15 +61,28 @@ public class CargarResultadosAction extends ActionSupport {
 
     @Override
     public void validate() {
-        CandidatoDAO candidatoDAO = d.getCandidato();
-        candidatos = candidatoDAO.getCandidatos();
-        if (num_mesa <= 0) {
-            addFieldError("num_mesa", "El numero debe ser mayor a 0.");
-        }        
-    }
 
-    public List<Candidato> getCandidatos() {
-        return candidatos;
+        for (Map.Entry<String, String[]> entrySet : parametros.entrySet()) {
+            String key = entrySet.getKey();
+            String[] value = entrySet.getValue();
+            try {
+                int i = Integer.parseInt(value[0]);
+                if (key.compareTo("num_mesa") == 0) {
+                    if (i < 0) {
+                        addFieldError("" + key, "Seleccione una mesa.");
+                    }
+                } else {
+                    if (i < 0) {
+                        addFieldError("" + key, "El valor ingresado debe ser mayor a 0.");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                addFieldError("" + key, "Ingrese un número.");
+            } catch (NullPointerException e) {
+                System.out.println(e.toString());
+                addFieldError("" + key, "Este campo no puede estar vacio.");
+            }
+        }
     }
 
     public int getNum_mesa() {
@@ -69,6 +91,15 @@ public class CargarResultadosAction extends ActionSupport {
 
     public void setNum_mesa(int num_mesa) {
         this.num_mesa = num_mesa;
+    }
+
+    @Override
+    public void setParameters(Map<String, String[]> maps) {
+        this.parametros = maps;
+    }
+
+    public Map<String, String[]> getParametros() {
+        return parametros;
     }
 
 }

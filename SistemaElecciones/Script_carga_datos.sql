@@ -1,4 +1,4 @@
-use elecciones2;
+use elecciones;
 
 insert into candidato(nombre) values ("Nulo");
 insert into candidato(nombre) values ("Blanco");
@@ -50,4 +50,4 @@ insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) value
 insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) values ("name18",6547867,0,0,14);
 insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) values ("name19",98757653,0,0,14);
 insert into usuario(nick,clave,habilitado) values ("cazador1992","counter1.5",1);
-insert into cliente(nombre,apellido,id_usuario,email) values ("Angelo","Wolf",1,"angelowolf21@gmail.com");
+insert into cliente(nombre,apellido,idUsuario,email) values ("Angelo","Wolf",1,"angelowolf21@gmail.com");

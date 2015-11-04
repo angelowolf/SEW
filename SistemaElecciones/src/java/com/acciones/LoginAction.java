@@ -5,10 +5,16 @@
  */
 package com.acciones;
 
+import DAO.Candidato.CandidatoDAO;
+import DAO.DAOFactory;
+import DAO.Mesa.MesaDAO;
 import DAO.MyException;
+import Modelo.Negocio.Candidato;
 import Modelo.Negocio.Usuario;
+import com.modelo.SingletonCantidadMesa;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
@@ -30,11 +36,13 @@ public class LoginAction extends ActionSupport {
     private String mensaje;
     private String username;
     private String password;
+    private DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+    private Map<String, Object> sesion = ActionContext.getContext().getSession();
+    private Map<String, Object> application = ActionContext.getContext().getApplication();
 
     @Override
     public String execute() {
         try {
-            Map<String, Object> sesion = ActionContext.getContext().getSession();
             Usuario user = new Usuario("cazador1992", "counter1.5");
 //        um = new UsuarioManager();
 //        ////
@@ -56,7 +64,14 @@ public class LoginAction extends ActionSupport {
             return ERROR;
         }
         try {
-            com.modelo.SingletonCantidadMesa.getInstancia().getMesas();
+            if (application.get("mesas") == null) {
+                MesaDAO mesaDAO = d.getMesaDAO();
+                application.put("mesas", mesaDAO.getMesas());
+            }
+            if (application.get("candidatos") == null) {
+                CandidatoDAO candidatoDAO = d.getCandidato();
+                application.put("candidatos", candidatoDAO.getCandidatos());
+            }
         } catch (MyException e) {
             logger.error("Error al obtener cantidad de mesas", e);
             return ERROR;

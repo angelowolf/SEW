@@ -1,5 +1,5 @@
-create database elecciones2;
-use elecciones2;
+create database elecciones;
+use elecciones;
 drop table if exists votante;
 drop table if exists cantidad_votos_por_mesa_candidato;
 drop table if exists mesa;

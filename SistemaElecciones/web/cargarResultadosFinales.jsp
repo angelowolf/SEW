@@ -104,21 +104,23 @@
                 <s:fielderror theme="bootstrap"/>
                 <s:form action="cargar_resultados" method="post" validate="true"enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
                     <div class="col-md-4">
-                        <s:textfield name="num_mesa" label="Numero Mesa"/>
+                        <s:label value="Numero Mesa"/><s:select headerKey="-1" headerValue="Seleccione una mesa" name="num_mesa" list="#application.mesas"/>
                     </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <s:iterator value="candidatos" var="cadaCandidato">
+                                <s:iterator value="#application.candidatos" var="cadaCandidato">
                                     <th><s:property value="#cadaCandidato.nombre"/></th>
-                                </s:iterator>     
+                                    </s:iterator>     
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <s:iterator value="candidatos" var="cadaCandidato">
-                                    <td><s:textfield name="%{#cadaCandidato.idCandidato}" value="" /></td>
-                                </s:iterator>                               
+                                <s:iterator value="parametros" var="parametro">
+                                    <s:if test="%{#parametro.key!='num_mesa'}">
+                                        <td><s:textfield name="%{#parametro.key}" value="%{#parametro.value[0]}"/></td>
+                                    </s:if>
+                                </s:iterator>                             
                             </tr>
                         </tbody>
                     </table>

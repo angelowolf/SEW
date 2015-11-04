@@ -8,13 +8,13 @@ function funcion_cargar_voto(idVotante) {
         url: "ServletCargarVoto",
         data: atributos,
 //                            dataType: "json",
-        beforeSend: function(objeto) {
+        beforeSend: function (objeto) {
             //     alert("me voy a ejecutar.");
         },
-        success: function(datos) {
+        success: function (datos) {
             //    alert("Valor devuelto : " + datos);
         },
-        error: function(objeto, mensaje, otroobj) {
+        error: function (objeto, mensaje, otroobj) {
             alert(mensaje);
         }});
 }
@@ -28,13 +28,13 @@ function funcion_marcar_partido(idVotante) {
         url: "ServletMarcarPartido",
         data: atributos,
 //                            dataType: "json",
-        beforeSend: function(objeto) {
+        beforeSend: function (objeto) {
             //     alert("me voy a ejecutar.");
         },
-        success: function(datos) {
+        success: function (datos) {
             //    alert("Valor devuelto : " + datos);
         },
-        error: function(objeto, mensaje, otroobj) {
+        error: function (objeto, mensaje, otroobj) {
             alert(mensaje);
         }});
 }

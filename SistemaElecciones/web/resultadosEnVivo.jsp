@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css.css">
         <link rel="stylesheet" href="css/stylesMenuDesplegable.css">
-
+        <script type="text/javascript" src="js/cargaTabla.js"></script>
     </head>
     <body>        
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -99,8 +99,12 @@
                 </ul>   
             </div>
         </div>              
-        <div class="container" style="padding-top: 60px;"> 
-            <canvas id="canvas" height="500" width="500"></canvas>
+        <div class="container col-md-12" style="padding-top: 60px;"> 
+            <canvas id="canvas" height="500" width="500" class="col-md-8"></canvas>
+            <div class="col-md-4">
+                <table class="table table-condensed" id="tabla-cantidad">                                       
+                </table>
+            </div>
         </div>       
     </body>
 </html>

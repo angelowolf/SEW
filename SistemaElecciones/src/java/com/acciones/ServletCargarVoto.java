@@ -46,12 +46,12 @@ public class ServletCargarVoto extends ActionSupport {
         return null;
     }
 
-    public int getNumeroCheckBox() {
+    public int getIdVotante() {
         return idVotante;
     }
 
-    public void setNumeroCheckBox(int numeroCheckBox) {
-        this.idVotante = numeroCheckBox;
+    public void setIdVotante(int idVotante) {
+        this.idVotante = idVotante;
     }
 
 }
