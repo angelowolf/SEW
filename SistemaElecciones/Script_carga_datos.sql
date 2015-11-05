@@ -49,5 +49,5 @@ insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) value
 insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) values ("name17",098745,0,0,14);
 insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) values ("name18",6547867,0,0,14);
 insert into votante (nombre,dni,votoRealizado,pertenecePartido,numeroMesa) values ("name19",98757653,0,0,14);
-insert into usuario(nick,clave,habilitado) values ("cazador1992","counter1.5",1);
+insert into usuario(nick,clave,habilitado) values ("cazador1992","daa4699d635fac8f363e6406d815d7a1",1);
 insert into cliente(nombre,apellido,idUsuario,email) values ("Angelo","Wolf",1,"angelowolf21@gmail.com");

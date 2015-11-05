@@ -18,7 +18,7 @@
         <link href="css/stylesLogin.css" media="all" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
     </head>
-    
+
     <body>
 
 
@@ -27,6 +27,9 @@
                 <h1>S.E.W. - Sistema de Elecciones WEB</h1>
             </div>
             <s:form class="form animate-form" id="form"  action="login">
+                <s:actionerror theme="bootstrap"/>
+                <s:actionmessage theme="bootstrap"/>
+                <s:fielderror theme="bootstrap"/>
                 <div class="form-group has-feedback">
                     <label class="control-label sr-only" for="username">Nombre de Usuario</label>
                     <div class="input-group-addon">

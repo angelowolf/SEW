@@ -5,10 +5,12 @@
  */
 package com.acciones;
 
+import Controlador.Encriptar;
 import DAO.Candidato.CandidatoDAO;
 import DAO.DAOFactory;
 import DAO.Mesa.MesaDAO;
 import DAO.MyException;
+import DAO.Usuario.UsuarioDAO;
 import Modelo.Negocio.Candidato;
 import Modelo.Negocio.Usuario;
 import com.modelo.SingletonCantidadMesa;
@@ -29,11 +31,10 @@ import org.apache.struts2.convention.annotation.Result;
 @Action(value = "login", results = {
     @Result(name = "success", location = "/resultadosEnVivo.jsp"),
     @Result(name = "error", location = "/error.jsp"),
-    @Result(name = "none", location = "/index.jsp")})
+    @Result(name = "input", location = "/index.jsp")})
 public class LoginAction extends ActionSupport {
 
     private static final Logger logger = Logger.getLogger(LoginAction.class);
-    private String mensaje;
     private String username;
     private String password;
     private DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
@@ -43,21 +44,14 @@ public class LoginAction extends ActionSupport {
     @Override
     public String execute() {
         try {
-            Usuario user = new Usuario("cazador1992", "counter1.5");
-//        um = new UsuarioManager();
-//        ////
-//        um.guardarNuevoUsuario(user);
-//        ////
-//        Usuario user = um.buscarUsuarioPorID(username);
-//        if (user == null) {
-//            mensaje = "Contraseña y/o Usuario incorrectos";
-//            return NONE;
-//        }
-            if (user.getNick().equals(username) && user.getClave().equals(password)) {
-                sesion.put("user", user);
+            UsuarioDAO usuarioDAO = d.getUsuarioDAO();
+            Usuario usuario = usuarioDAO.getUsuario(username);
+            String claveMD5 = Encriptar.encriptaEnMD5(password);
+            if (usuario != null && usuario.getNick().equals(username) && usuario.getClave().equals(claveMD5)) {
+                sesion.put("user", usuario);
             } else {
-                mensaje = "Contraseña y/o Usuario incorrectos";
-                return NONE;
+                addFieldError("", "Usuario o Contraseña incorrectos.");
+                return INPUT;
             }
         } catch (Exception e) {
             logger.error("Error al iniciar sesion.", e);
@@ -80,8 +74,14 @@ public class LoginAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    @Override
+    public void validate() {
+        if (password.trim().isEmpty()) {
+            addFieldError("password", "Ingrese una clave.");
+        }
+        if (username.trim().isEmpty()) {
+            addFieldError("username", "Ingrese el usuario.");
+        }
     }
 
     public void setUsername(String username) {
