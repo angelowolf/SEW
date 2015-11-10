@@ -8,6 +8,7 @@ package com.acciones;
 import DAO.DAOFactory;
 import DAO.Mesa.MesaDAO;
 import Modelo.Negocio.MesaCantidad;
+import Modelo.Negocio.MesaCantidadTotal;
 import com.google.gson.Gson;
 import com.modelo.MesaParticipacion;
 import com.opensymphony.xwork2.ActionSupport;
@@ -55,26 +56,14 @@ public class CargaTablaAction extends ActionSupport {
         Map<Integer, MesaParticipacion> mesasParticipaciones = new HashMap<Integer, MesaParticipacion>();
         DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
         MesaDAO daoMesa = d.getMesaDAO();
-        List<MesaCantidad> mesasCantidadVotosRealizados = daoMesa.getMesasCantidadVotosRealizados();
-        for (MesaCantidad cadaMesa : mesasCantidadVotosRealizados) {
+        List<MesaCantidadTotal> mesasCantidadVotosRealizados = daoMesa.getMesasCantidadVotosRealizadosYTotales();
+        for (MesaCantidadTotal cadaMesa : mesasCantidadVotosRealizados) {
             MesaParticipacion m = new MesaParticipacion();
             m.setNumeroMesa(cadaMesa.getNumeroMesa());
             m.setCantidad(cadaMesa.getCantidad());
+            m.setTotal(cadaMesa.getTotal());
+            m.calcular();
             mesasParticipaciones.put(cadaMesa.getNumeroMesa(), m);
-        }
-        List<MesaCantidad> mesasCantidadTotal = daoMesa.getMesasCantidadVotantes();
-        for (MesaCantidad cadaMesa : mesasCantidadTotal) {
-            MesaParticipacion m = mesasParticipaciones.get(cadaMesa.getNumeroMesa());
-            if (m == null) {
-                m = new MesaParticipacion();
-                m.setNumeroMesa(cadaMesa.getNumeroMesa());
-                m.setTotal(cadaMesa.getCantidad());
-                m.calcular();
-                mesasParticipaciones.put(m.getNumeroMesa(), m);
-            } else {
-                m.setTotal(cadaMesa.getCantidad());
-                m.calcular();
-            }
         }
         return mesasParticipaciones;
     }

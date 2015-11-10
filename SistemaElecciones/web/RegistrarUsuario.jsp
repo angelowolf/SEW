@@ -21,14 +21,17 @@
     </head>
     <body>
         <div class="form-group col-md-4 col-md-offset-4">
-            <%--<s:actionerror theme="bootstrap"/>--%>
-            <%--<s:actionmessage theme="bootstrap"/>--%>
-            <%--<s:fielderror theme="bootstrap"/>--%>
+            <s:actionerror theme="bootstrap"/>
+            <s:actionmessage theme="bootstrap"/>
+            <s:fielderror theme="bootstrap"/>
             <s:form action="registrar_usuario" method="post" validate="true"enctype="multipart/form-data" theme="bootstrap">
 
+                <s:textfield name="nombre" label="Nombre"/>
+                <s:textfield name="apellido" label="Apellido"/>
+                <s:textfield name="email" label="Email"/>
                 <s:textfield name="nick" label="Nombrde de Usuario"/>
-
                 <s:textfield name="clave" label="Contraseña"/>
+                <s:textfield name="clave2" label="Contraseña"/>
 
                 <s:submit value="Registrar" cssClass="btn btn-primary col-md-offset-9 col-md-3"/>
             </s:form>

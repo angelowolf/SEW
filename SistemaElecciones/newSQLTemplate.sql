@@ -1,6 +1,9 @@
--- select * from 
--- (select numeromesa, count(idVotante) as cantidad from votante where votante.votoRealizado = 1 group by votante.numeroMesa) as cantidad,
--- (select count(idVotante)as total from votante group by votante.numeroMesa) as total
+-- SELECT m.numeromesa,
+--  cast(sum(case when votorealizado = 1 then 1 else 0 end) as signed) as cantidad,
+--  count(*) as total
+-- FROM mesa m
+-- LEFT JOIN votante v1 ON m.numeromesa = v1.numeromesa
+-- GROUP BY m.numeromesa;
 
-select numeromesa, cast(sum(cantidad) as signed) as cantidad from cantidad_votos_por_mesa_candidato
- group by numeromesa;
+select * from usuario;
+select * from cliente;

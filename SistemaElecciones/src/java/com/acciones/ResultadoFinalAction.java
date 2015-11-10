@@ -13,6 +13,7 @@ import DAO.MyException;
 import Modelo.Negocio.Candidato;
 import Modelo.Negocio.Mesa;
 import Modelo.Negocio.MesaCantidad;
+import Modelo.Negocio.MesaCantidadTotal;
 import Modelo.Negocio.VotosXMesaXCandidato;
 import com.modelo.MesaParticipacion;
 import com.modelo.ResultadoCadaMesa;
@@ -89,10 +90,10 @@ public class ResultadoFinalAction extends ActionSupport {
                 MesaParticipacion m = mesasParticipaciones.get(cadaMesa.getNumeroMesa());
                 m.setCantidad(cadaMesa.getCantidad());
             }
-            List<MesaCantidad> mesasCantidadTotalVotante = daoMesa.getMesasCantidadVotantes();
-            for (MesaCantidad cadaMesa : mesasCantidadTotalVotante) {
+            List<MesaCantidadTotal> mesasCantidadTotalVotante = daoMesa.getMesasCantidadVotosRealizadosYTotales();
+            for (MesaCantidadTotal cadaMesa : mesasCantidadTotalVotante) {
                 MesaParticipacion m = mesasParticipaciones.get(cadaMesa.getNumeroMesa());
-                m.setTotal(cadaMesa.getCantidad());
+                m.setTotal(cadaMesa.getTotal());
                 m.calcular();
             }
 

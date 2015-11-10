@@ -6,11 +6,15 @@
 package com.acciones;
 
 import Controlador.Encriptar;
+import DAO.Cliente.ClienteDAO;
 import DAO.DAOFactory;
 import DAO.MyException;
 import DAO.Usuario.UsuarioDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import Modelo.Negocio.Usuario;
+import com.opensymphony.xwork2.validator.annotations.EmailValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
@@ -26,31 +30,24 @@ import org.apache.struts2.convention.annotation.Results;
 })
 public class RegistrarUsuarioAction extends ActionSupport {
 
-    private String nick, clave;
+    private static final Logger logger = Logger.getLogger(RegistrarUsuarioAction.class);
+    private String nick, clave, clave2, nombre, apellido, email;
 
     @Override
     @Action(value = "/registrar_usuario")
     public String execute() {
         try {
-            DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            UsuarioDAO dao = d.getUsuarioDAO();
-
-            Usuario u = new Usuario();
-            u.setNick(nick);
-            u.setClave(Encriptar.encriptaEnMD5(clave));
-            dao.addUsuario(u);
-
-            return SUCCESS;
+            if (Controlador.ControladorCliente.crearCliente(apellido, nombre, email, nick, clave)) {
+                addActionMessage("Cliente registrado con Exito!.");
+                return SUCCESS;
+            } else {
+                addActionError("Error al crear el Cliente.");
+                return INPUT;
+            }
         } catch (MyException e) {
+            logger.error("Error al iniciar sesion.", e);
             return ERROR;
         }
-    }
-
-    private boolean isNickDisponible() {
-        DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-        UsuarioDAO dao = d.getUsuarioDAO();
-        Modelo.Negocio.Usuario u = dao.getUsuario(nick);
-        return u == null;
     }
 
     @Override
@@ -61,7 +58,7 @@ public class RegistrarUsuarioAction extends ActionSupport {
             if (nick.trim().length() < 6) {
                 addFieldError("nick", "EL nick debe tener 6 caracteres como minimo.");
             } else {
-                if (!isNickDisponible()) {
+                if (!Controlador.ControladorCliente.isNickDisponible(nick)) {
                     addFieldError("nick", "El nick elegido ya esta en uso, elija otro!.");
                 }
             }
@@ -71,8 +68,52 @@ public class RegistrarUsuarioAction extends ActionSupport {
         } else {
             if (clave.trim().length() < 6) {
                 addFieldError("clave", "La contraseña debe tener 6 caracteres como minimo.");
+            } else {
+                if (clave.compareTo(clave2) != 0) {
+                    addFieldError("Clave2", "Las contraseñas no soniguales.");
+                }
             }
         }
+//
+//        if (nombre.trim().isEmpty()) {
+//            addFieldError("nombre", "Ingrese un nombre.");
+//        }
+//        if (apellido.trim().isEmpty()) {
+//            addFieldError("apellido", "Ingrese un apellido.");
+//        }
+
+    }
+
+    public void setClave2(String clave2) {
+        this.clave2 = clave2;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    @RequiredStringValidator(message = "Ingrese el nombre.")
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    @RequiredStringValidator(message = "Ingrese el apellido.")
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @RequiredStringValidator(message = "Ingrese el E-Mail.")
+    @EmailValidator(message = "El correro ingresado no es valido.")
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setNick(String nick) {
@@ -85,10 +126,6 @@ public class RegistrarUsuarioAction extends ActionSupport {
 
     public String getNick() {
         return nick;
-    }
-
-    public String getClave() {
-        return clave;
     }
 
 }
