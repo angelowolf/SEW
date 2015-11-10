@@ -15,4 +15,8 @@ public interface ClienteDAO {
 
     public Cliente getCliente(int id_cliente);
 
+    public boolean updateCliente(Cliente c);
+    
+    public boolean insertarCliente(Cliente c);
+
 }

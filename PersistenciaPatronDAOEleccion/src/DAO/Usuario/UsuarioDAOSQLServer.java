@@ -5,6 +5,7 @@
  */
 package DAO.Usuario;
 
+import Modelo.IUsuario;
 import Modelo.Negocio.Usuario;
 
 /**
@@ -24,17 +25,17 @@ public class UsuarioDAOSQLServer implements UsuarioDAO {
     }
 
     @Override
-    public boolean addUsuario(Usuario u) {
+    public int addUsuario(IUsuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean habilitar(Usuario u) {
+    public boolean habilitar(IUsuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean eliminar(Usuario u) {
+    public boolean eliminar(IUsuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

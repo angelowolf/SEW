@@ -17,4 +17,10 @@ public interface CandidatoDAO {
     public List<Candidato> getCandidatos();
 
     public Candidato getCandidato(int idCandidato);
+
+    public void insertarCandidato(Candidato candidato);
+
+    public void modificarCandidato(Candidato candidato);
+
+    public void eliminarCandidato(int studentId);
 }

@@ -8,6 +8,7 @@ package DAO.Mesa;
 import DAO.MYSQL.MYSQLDAOFactory;
 import Modelo.Negocio.Mesa;
 import Modelo.Negocio.MesaCantidad;
+import Modelo.Negocio.MesaCantidadTotal;
 import java.util.List;
 
 /**
@@ -25,16 +26,14 @@ public class MesaDAOMYSQL implements MesaDAO {
     }
 
     @Override
-    public List<MesaCantidad> getMesasCantidadVotosRealizados() {
-        String sql = "select votante.numeroMesa, count(idVotante) as cantidad from votante where votante.votoRealizado = 1 group by votante.numeroMesa";
-        List<MesaCantidad> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, MesaCantidad.class, null, MYSQLDAOFactory.getConnection());
-        return lista;
-    }
-
-    @Override
-    public List<MesaCantidad> getMesasCantidadVotantes() {
-        String sql = "select votante.numeroMesa, count(idVotante) as cantidad from votante group by votante.numeroMesa";
-        List<MesaCantidad> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, MesaCantidad.class, null, MYSQLDAOFactory.getConnection());
+    public List<MesaCantidadTotal> getMesasCantidadVotosRealizadosYTotales() {
+        String sql = "SELECT m.numeromesa,"
+                + " cast(sum(case when votorealizado = 1 then 1 else 0 end) as signed) as cantidad,"
+                + " count(*) as total "
+                + "FROM mesa m "
+                + "LEFT JOIN votante v1 ON m.numeromesa = v1.numeromesa "
+                + "GROUP BY m.numeromesa";
+        List<MesaCantidadTotal> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, MesaCantidadTotal.class, null, MYSQLDAOFactory.getConnection());
         return lista;
     }
 

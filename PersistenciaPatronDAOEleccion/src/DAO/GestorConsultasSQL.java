@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientConnectionException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -94,7 +95,7 @@ public class GestorConsultasSQL<T> {
         int filasAfectadas = 0;
         PreparedStatement sentencia = null;
         try {
-            sentencia = conexion.prepareStatement(sql);
+            sentencia = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             if (parametros != null) {
                 for (int i = 1; i < parametros.length + 1; i++) {
@@ -102,6 +103,11 @@ public class GestorConsultasSQL<T> {
                 }
             }
             filasAfectadas = sentencia.executeUpdate();
+            ResultSet rs = sentencia.getGeneratedKeys();
+            if(rs.next())
+            {
+                return rs.getInt(1);
+            }
         } catch (SQLException e) {
             throw new MyException("Error de SQL.", e);
         } finally {

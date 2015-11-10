@@ -38,4 +38,9 @@ public class Candidato {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return "Candidato{" + "idCandidato=" + idCandidato + ", nombre=" + nombre + '}';
+    }
+
 }

@@ -6,6 +6,7 @@
 package DAO.Usuario;
 
 import DAO.MYSQL.MYSQLDAOFactory;
+import Modelo.IUsuario;
 import java.util.List;
 ;
 import Modelo.Negocio.Usuario;
@@ -30,29 +31,29 @@ public class UsuarioDAOMYSQL implements UsuarioDAO {
     }
 
     @Override
-    public boolean addUsuario(Usuario u) {
+    public int addUsuario(IUsuario u) {
         String sql = "INSERT into usuario(nick,clave,habilitado) VALUES(?,?,1)";
         Object[] parametros = {u.getNick(), u.getClave()};
-        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
+        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
     }
 
     @Override
-    public boolean habilitar(Usuario u) {
-        String sql = "UPDATE usuario set habilitado = 0 WHERE id_usuario = ?";
+    public boolean habilitar(IUsuario u) {
+        String sql = "UPDATE usuario set habilitado = 0 WHERE idUsuario = ?";
         Object[] parametros = {u.getIdUsuario()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 
     @Override
-    public boolean eliminar(Usuario u) {
-        String sql = "DELTE FROM usuario where id_usuario = ?";
+    public boolean eliminar(IUsuario u) {
+        String sql = "DELTE FROM usuario where idUsuario = ?";
         Object[] parametros = {u.getIdUsuario()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 
     @Override
     public Usuario getUsuario(int id_usuario) {
-        String sql = "SELECT * FROM usuario where id_usuario = ?";
+        String sql = "SELECT * FROM usuario where idUsuario = ?";
         Object[] parametros = {id_usuario};
         List<Usuario> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, Usuario.class, parametros, MYSQLDAOFactory.getConnection());
         if (!lista.isEmpty()) {

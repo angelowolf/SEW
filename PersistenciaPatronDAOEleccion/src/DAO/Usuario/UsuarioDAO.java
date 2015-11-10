@@ -5,6 +5,7 @@
  */
 package DAO.Usuario;
 
+import Modelo.IUsuario;
 import Modelo.Negocio.Usuario;
 
 /**
@@ -17,10 +18,10 @@ public interface UsuarioDAO {
 
     public Usuario getUsuario(int id_usuario);
 
-    public boolean addUsuario(Usuario u);
+    public int addUsuario(IUsuario u);
 
-    public boolean habilitar(Usuario u);
+    public boolean habilitar(IUsuario u);
 
-    public boolean eliminar(Usuario u);
+    public boolean eliminar(IUsuario u);
 
 }

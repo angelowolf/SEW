@@ -5,6 +5,7 @@
  */
 package DAO.Cliente;
 
+import DAO.DAOFactory;
 import DAO.MYSQL.MYSQLDAOFactory;
 import DAO.MyException;
 import Modelo.Negocio.Cliente;
@@ -26,7 +27,7 @@ public class ClienteDAOMYSQL implements ClienteDAO {
         PreparedStatement sentencia = null;
         try {
             ResultSet filas;
-            String sql = "select * from Cliente where id_cliente = ? ";
+            String sql = "select * from Cliente where idCliente = ? ";
             Object[] parametros = {id_cliente};
             conexion = MYSQLDAOFactory.getConnection();
             sentencia = conexion.prepareStatement(sql);
@@ -41,9 +42,10 @@ public class ClienteDAOMYSQL implements ClienteDAO {
 
             while (filas.next()) {
                 cliente.setApellido(filas.getString("apellido"));
-                cliente.setIdCliente(filas.getInt("id_cliente"));
+                cliente.setIdCliente(filas.getInt("idCliente"));
                 cliente.setNombre(filas.getString("nombre"));
-                cliente.getUsuario().setIdUsuario(filas.getInt("id_usuario"));
+                cliente.setEmail(filas.getString("email"));
+                cliente.getUsuario().setIdUsuario(filas.getInt("idUsuario"));
             }
             filas.close();
         } catch (SQLException ex) {
@@ -67,4 +69,24 @@ public class ClienteDAOMYSQL implements ClienteDAO {
         return cliente;
     }
 
+    @Override
+    public boolean updateCliente(Cliente c) {
+        String sql = "UPDATE cliente SET nombre = ?, apellido = ?, email = ? where idCliente = ?";
+        Object[] parametros = {c.getNombre(), c.getApellido(), c.getEmail(), c.getIdCliente()};
+        try {
+            return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
+        } catch (MyException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public boolean insertarCliente(Cliente c) {
+        DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        DAO.Usuario.UsuarioDAO daoUsuario = d.getUsuarioDAO();
+        int fk = daoUsuario.addUsuario(c.getUsuario());
+        String sql = "INSERT INTO cliente(nombre,apellido,idusuario,email) values (?,?,?,?)";
+        Object[] parametros = {c.getNombre(), c.getApellido(), fk, "email"};
+        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
+    }
 }

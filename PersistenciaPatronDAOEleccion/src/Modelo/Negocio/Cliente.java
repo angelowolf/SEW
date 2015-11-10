@@ -17,24 +17,34 @@ public class Cliente {
     private int idCliente;
     private String nombre, apellido;
     private IUsuario usuario;
+    private String email;
 
     public Cliente() {
         this.iniciarUsuario();
     }
 
-    public Cliente(int id_cliente, String nombre, String apellido) {
+    public Cliente(int id_cliente, String nombre, String apellido, String email) {
         this.idCliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.email = email;
         this.iniciarUsuario();
-
     }
 
-    public Cliente(int id_cliente, String nombre, String apellido, IUsuario u) {
+    public Cliente(int id_cliente, String nombre, String apellido, String email, IUsuario u) {
         this.idCliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.iniciarUsuario();
+        this.email = email;
+        this.usuario = u;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     private void iniciarUsuario() {

@@ -7,6 +7,7 @@ package DAO.Mesa;
 
 import Modelo.Negocio.Mesa;
 import Modelo.Negocio.MesaCantidad;
+import Modelo.Negocio.MesaCantidadTotal;
 import java.util.List;
 
 /**
@@ -21,12 +22,7 @@ public class MesaDAOSQLServer implements MesaDAO {
     }
 
     @Override
-    public List<MesaCantidad> getMesasCantidadVotosRealizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<MesaCantidad> getMesasCantidadVotantes() {
+    public List<MesaCantidadTotal> getMesasCantidadVotosRealizadosYTotales() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
