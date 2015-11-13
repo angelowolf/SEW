@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="baseLayout" template="/BaseLayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="body" value="" /> 
+    </definition>
+    <definition name="/Mesa/AltaModificacion.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Formulario Mesa" />
+        <put-attribute name="body" value="/Mesa/AltaModificacion.jsp" />
+    </definition>
+    <definition name="/Mesa/Todos.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Mesas" />
+        <put-attribute name="body" value="/Mesa/Todos.jsp" />
+    </definition>
+    <definition name="/Candidato/AltaModificacion.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Formulario Candidato" />
+        <put-attribute name="body" value="/Candidato/AltaModificacion.jsp" />
+    </definition>
+    <definition name="/Candidato/Todos.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Candidatos" />
+        <put-attribute name="body" value="/Candidato/Todos.jsp" />
+    </definition>
+  
+</tiles-definitions>

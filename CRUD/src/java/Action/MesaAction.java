@@ -33,7 +33,7 @@ public class MesaAction extends ActionSupport implements ModelDriven<Mesa> {
 
     private boolean validar() {
         if (mesa.getNumeroMesa() <= 0) {
-            addFieldError("numero", "Ingrese un numero de mesa.");
+            addFieldError("mesa.numeroMesa", "Ingrese un numero de mesa.");
             return false;
         }
         return true;

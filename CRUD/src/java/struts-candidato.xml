@@ -5,18 +5,24 @@
 
 <struts>
     <package name="candidato" extends="struts-default" namespace="/Candidato">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
         <action name="guardarOModificar" method="guardarOModificar" class="Action.CandidatoAction">
             <result name="success" type="redirect">listar</result>
-            <result name="input">/Candidato/AltaModificacion.jsp</result>
+            <result name="input" type="tiles">/Candidato/AltaModificacion.tiles</result>
         </action>
         <action name="eliminar" method="eliminar" class="Action.CandidatoAction">
             <result name="success" type="redirect">listar</result>
         </action>
         <action name="listar" method="list" class="Action.CandidatoAction">
-            <result name="success">/Candidato/Todos.jsp</result>
+            <result name="success" type="tiles">/Candidato/Todos.tiles</result>
         </action>
         <action name="editar" method="editar" class="Action.CandidatoAction">
-            <result name="success">/Candidato/AltaModificacion.jsp</result>
-        </action>       
+            <result name="success" type="tiles">/Candidato/AltaModificacion.tiles</result>
+        </action> 
+        <action name="nuevo" method="nuevo" class="Action.LinkAction">
+            <result name="nuevo" type="tiles">/Candidato/AltaModificacion.tiles</result>
+        </action>              
     </package>
 </struts>

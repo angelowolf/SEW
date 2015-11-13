@@ -7,18 +7,24 @@
 <struts>
 
     <package name="mesa" extends="struts-default" namespace="/Mesa">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
         <action name="guardarOModificar" method="guardarOModificar" class="Action.MesaAction">
             <result name="success" type="redirect">listar</result>
-            <result name="input">/Mesa/AltaModificacion.jsp</result>
+            <result name="input" type="tiles">/Mesa/AltaModificacion.tiles</result>
         </action>
         <action name="eliminar" method="eliminar" class="Action.MesaAction">
             <result name="success" type="redirect">listar</result>
         </action>
         <action name="listar" method="list" class="Action.MesaAction">
-            <result name="success">/Mesa/Todos.jsp</result>
+            <result name="success" type="tiles">/Mesa/Todos.tiles</result>
         </action>
         <action name="editar" method="editar" class="Action.MesaAction">
-            <result name="success">/Mesa/AltaModificacion.jsp</result>
+            <result name="success" type="tiles">/Mesa/AltaModificacion.tiles</result>
         </action>       
+        <action name="nuevo" method="nuevo" class="Action.LinkAction">
+            <result name="nuevo" type="tiles">/Mesa/AltaModificacion.tiles</result>
+        </action>        
     </package>
 </struts>

@@ -35,7 +35,7 @@ public class CandidatoAction extends ActionSupport implements ModelDriven<Candid
 
     private boolean validar() {
         if (candidato.getNombre().trim().isEmpty()) {
-            addFieldError("nombre", "Ingrese un nombre.");
+            addFieldError("candidato.nombre", "Ingrese un nombre.");
             return false;
         }
         return true;
