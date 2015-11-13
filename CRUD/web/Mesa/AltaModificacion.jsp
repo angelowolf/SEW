@@ -1,8 +1,9 @@
 <%-- 
-    Document   : candidato
-    Created on : 10/11/2015, 01:56:37
+    Document   : AltaModificacion
+    Created on : 12/11/2015, 15:49:49
     Author     : angelo
 --%>
+
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,13 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Formulario Candidato</title>
-        <script src="js/bootstrap.min.js"></script>
-
-        <script src="js/metisMenu.min.js"></script>
-
-        <script src="js/sb-admin-2.js"></script>
-
+        <title>Forumulario Mesa</title>  
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -28,8 +23,7 @@
             <s:fielderror theme="bootstrap"/>
             <s:form action="guardarOModificar" validate="true" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
                 <%--<s:push value="candidato">--%>
-                <s:hidden name="candidato.idCandidato"/>
-                <s:textfield name="candidato.nombre" label="Nombre candidato" />
+                <s:textfield name="mesa.numeroMesa" label="Numero Mesa" />
                 <s:submit value="Confirmar" cssClass="btn btn-primary col-md-offset-9 col-md-3"/>
                 <%--</s:push>--%>            
             </s:form>

@@ -5,18 +5,10 @@
 
 <struts>
     <constant name="struts.devMode" value="true"/>
-    <package name="default" extends="struts-default" namespace="/Candidato">
-        <action name="guardarOModificarCandidato" method="guardarOModificarCandidato" class="Action.CandidatoAction">
-            <result name="success" type="redirect">listCandidato</result>
-        </action>
-        <action name="eliminarCandidato" method="eliminar" class="Action.CandidatoAction">
-            <result name="success" type="redirect">listCandidato</result>
-        </action>
-        <action name="listCandidato" method="list" class="Action.CandidatoAction">
-            <result name="success">/Candidato/Todos.jsp</result>
-        </action>
-        <action name="editarCandidato" method="editar" class="Action.CandidatoAction">
-            <result name="success">/Candidato/AltaModificacion.jsp</result>
-        </action>       
+
+    <package name="default" namespace="/" extends="struts-default">
     </package>
+    <include file="struts-candidato.xml"></include>
+    <include file="struts-mesa.xml"></include>
+    
 </struts>
