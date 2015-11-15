@@ -22,6 +22,6 @@ public interface UsuarioDAO {
 
     public boolean habilitar(IUsuario u);
 
-    public boolean eliminar(IUsuario u);
+    public boolean eliminar(int idUsuario);
 
 }

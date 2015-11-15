@@ -72,4 +72,14 @@ public class UsuarioProxy implements IUsuario {
         return getSujetoReal().toString();
     }
 
+    @Override
+    public void conmutar() {
+        getSujetoReal().conmutar();
+    }
+
+    @Override
+    public int intHabilitado() {
+        return getSujetoReal().intHabilitado();
+    }
+
 }

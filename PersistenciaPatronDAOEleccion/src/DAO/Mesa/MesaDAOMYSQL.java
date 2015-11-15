@@ -45,4 +45,30 @@ public class MesaDAOMYSQL implements MesaDAO {
         return lista;
     }
 
+    @Override
+    public void insertarMesa(Mesa mesa) {
+        String sql = "Insert INTO mesa(numeroMesa) values(?)";
+        Object[] parametros = {mesa.getNumeroMesa()};
+        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+
+    }
+
+    @Override
+    public Mesa getMesa(int numeroMesa) {
+        String sql = "select * from mesa where numeroMesa = ?";
+        Object[] parametros = {numeroMesa};
+        List<Mesa> lista = MYSQLDAOFactory.getGestorConsultasSQL().executeQuery(sql, Mesa.class, parametros, MYSQLDAOFactory.getConnection());
+        if (!lista.isEmpty()) {
+            return lista.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public void eliminarMesa(int numeroMesa) {
+        String sql = "delete from mesa  where numeroMesa = ?";
+        Object[] parametros = {numeroMesa};
+        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+    }
+
 }

@@ -62,4 +62,25 @@ public class VotosXMesaXCandidatoMYSQL implements VotosXMesaXCandidatoDAO {
         }
     }
 
+    @Override
+    public void insertar(int idCandidato, int numeroMesa) {
+        String sql = "insert into cantidad_votos_por_mesa_candidato(idCandidato, numeroMesa, cantidad) values(?,?,?)";
+        Object[] parametros = {idCandidato, numeroMesa, 0};
+        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+    }
+
+    @Override
+    public void eliminarNumeroMesa(int numeroMesa) {
+        String sql = "delete from cantidad_votos_por_mesa_candidato where numeroMesa = ?";
+        Object[] parametros = {numeroMesa};
+        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+    }
+
+    @Override
+    public void eliminarIdCandidato(int idCandidato) {
+        String sql = "delete from cantidad_votos_por_mesa_candidato where idCandidato = ?";
+        Object[] parametros = {idCandidato};
+        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+    }
+
 }

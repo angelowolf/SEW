@@ -32,22 +32,15 @@ public class UsuarioDAOMYSQL implements UsuarioDAO {
 
     @Override
     public int addUsuario(IUsuario u) {
-        String sql = "INSERT into usuario(nick,clave,habilitado) VALUES(?,?,1)";
+        String sql = "INSERT into usuario(nick,clave,habilitado) VALUES(?,?,0)";
         Object[] parametros = {u.getNick(), u.getClave()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
     }
 
     @Override
     public boolean habilitar(IUsuario u) {
-        String sql = "UPDATE usuario set habilitado = 0 WHERE idUsuario = ?";
-        Object[] parametros = {u.getIdUsuario()};
-        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
-    }
-
-    @Override
-    public boolean eliminar(IUsuario u) {
-        String sql = "DELTE FROM usuario where idUsuario = ?";
-        Object[] parametros = {u.getIdUsuario()};
+        String sql = "UPDATE usuario set habilitado = ? WHERE idUsuario = ?";
+        Object[] parametros = {u.intHabilitado(), u.getIdUsuario()};
         return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 
@@ -60,5 +53,12 @@ public class UsuarioDAOMYSQL implements UsuarioDAO {
             return lista.get(0);
         }
         return null;
+    }
+
+    @Override
+    public boolean eliminar(int idUsuario) {
+        String sql = "DELETE FROM usuario where idUsuario = ?";
+        Object[] parametros = {idUsuario};
+        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection()) != 0;
     }
 }

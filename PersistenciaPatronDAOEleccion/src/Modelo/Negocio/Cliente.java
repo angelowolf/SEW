@@ -20,7 +20,7 @@ public class Cliente {
     private String email;
 
     public Cliente() {
-        this.iniciarUsuario();
+        this.usuario = new Usuario();
     }
 
     public Cliente(int id_cliente, String nombre, String apellido, String email) {
@@ -85,7 +85,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id_cliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario.toString() + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", usuario=" + usuario + ", email=" + email + '}';
     }
 
 }

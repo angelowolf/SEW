@@ -6,6 +6,7 @@
 package DAO.Cliente;
 
 import Modelo.Negocio.Cliente;
+import java.util.List;
 
 /**
  *
@@ -18,5 +19,9 @@ public interface ClienteDAO {
     public boolean updateCliente(Cliente c);
     
     public boolean insertarCliente(Cliente c);
+
+    public List<Cliente> getClientes();
+
+    public void eliminarCLiente(int idCliente);
 
 }

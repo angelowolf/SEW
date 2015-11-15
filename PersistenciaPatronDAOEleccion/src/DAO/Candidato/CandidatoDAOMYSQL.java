@@ -34,10 +34,10 @@ public class CandidatoDAOMYSQL implements CandidatoDAO {
     }
 
     @Override
-    public void insertarCandidato(Candidato candidato) {
+    public int insertarCandidato(Candidato candidato) {
         String sql = "Insert INTO candidato(nombre) values(?)";
         Object[] parametros = {candidato.getNombre()};
-        MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
+        return MYSQLDAOFactory.getGestorConsultasSQL().executeUpdate(sql, parametros, MYSQLDAOFactory.getConnection());
     }
 
     @Override

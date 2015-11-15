@@ -28,4 +28,8 @@ public interface IUsuario {
     public boolean isHabilitado();
 
     public String toString();
+
+    public void conmutar();
+
+    public int intHabilitado();
 }

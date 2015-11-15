@@ -18,7 +18,7 @@ public interface CandidatoDAO {
 
     public Candidato getCandidato(int idCandidato);
 
-    public void insertarCandidato(Candidato candidato);
+    public int insertarCandidato(Candidato candidato);
 
     public void modificarCandidato(Candidato candidato);
 

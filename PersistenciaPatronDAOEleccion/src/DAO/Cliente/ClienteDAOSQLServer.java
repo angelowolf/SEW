@@ -6,6 +6,7 @@
 package DAO.Cliente;
 
 import Modelo.Negocio.Cliente;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,16 @@ public class ClienteDAOSQLServer implements ClienteDAO{
 
     @Override
     public boolean insertarCliente(Cliente c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Cliente> getClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarCLiente(int idCliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

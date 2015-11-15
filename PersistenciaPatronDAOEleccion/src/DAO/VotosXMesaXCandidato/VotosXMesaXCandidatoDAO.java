@@ -19,6 +19,13 @@ public interface VotosXMesaXCandidatoDAO {
     public boolean cargarResultados(VotosXMesaXCandidato m);
 
     public List<VotosXMesaXCandidato> getResultados(int numeroMesa);
-    
+
     public List<VotosXMesaXCandidato> getResultadosPorCandidato(int idCandidato);
+
+    public void insertar(int idCandidato, int numeroMesa);
+
+    public void eliminarNumeroMesa(int numeroMesa);
+
+    public void eliminarIdCandidato(int idCandidato);
+
 }

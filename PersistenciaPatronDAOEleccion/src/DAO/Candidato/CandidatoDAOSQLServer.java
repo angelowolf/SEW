@@ -25,7 +25,7 @@ public class CandidatoDAOSQLServer implements CandidatoDAO{
     }
 
     @Override
-    public void insertarCandidato(Candidato candidato) {
+    public int insertarCandidato(Candidato candidato) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -77,4 +77,18 @@ public class Usuario implements IUsuario {
         return "UsuarioReal{" + "id_usuario=" + idUsuario + ", nick=" + nick + ", clave=" + clave + ", habilitado=" + habilitado + '}';
     }
 
+    @Override
+    public void conmutar() {
+        habilitado = !habilitado;
+    }
+
+    @Override
+    public int intHabilitado() {
+        if (habilitado) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }

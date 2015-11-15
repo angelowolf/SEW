@@ -21,4 +21,10 @@ public interface MesaDAO {
     public List<MesaCantidadTotal> getMesasCantidadVotosRealizadosYTotales();
 
     public List<MesaCantidad> getMesasCantidadesVotosTotales();
+
+    public void insertarMesa(Mesa mesa);
+
+    public Mesa getMesa(int numeroMesa);
+
+    public void eliminarMesa(int numeroMesa);
 }

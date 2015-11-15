@@ -35,7 +35,7 @@ public class UsuarioDAOSQLServer implements UsuarioDAO {
     }
 
     @Override
-    public boolean eliminar(IUsuario u) {
+    public boolean eliminar(int idUsuario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
