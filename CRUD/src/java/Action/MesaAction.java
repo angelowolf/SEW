@@ -5,6 +5,7 @@
  */
 package Action;
 
+import Controlador.ControladorMesa;
 import DAO.DAOFactory;
 import DAO.MyException;
 import Modelo.Negocio.Mesa;
@@ -45,7 +46,7 @@ public class MesaAction extends ActionSupport implements ModelDriven<Mesa> {
         }
         Mesa m = daoMesa.getMesa(mesa.getNumeroMesa());
         if (m == null) {
-            daoMesa.insertarMesa(mesa);
+            ControladorMesa.crear(d, mesa);
             sesion.put("mensaje", "Mesa Agregada.");
         } else {
             addFieldError("mesa.numeroMesa", "El numero de mesa ya esta ingresado.");
@@ -65,7 +66,7 @@ public class MesaAction extends ActionSupport implements ModelDriven<Mesa> {
     public String eliminar() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         try {
-            daoMesa.eliminarMesa(Integer.parseInt(request.getParameter("numeroMesa")));
+            ControladorMesa.eliminar(d, Integer.parseInt(request.getParameter("numeroMesa")));
             sesion.put("mensaje", "Mesa Eliminada.");
         } catch (MyException e) {
             sesion.put("mensaje", "No se puede eliminar la mesa ya que esta es utilizada por el sistema, debera eliminar los votantes asociadas a ella.");

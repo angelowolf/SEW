@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="usuario" extends="struts-default" namespace="/Usuario">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <action name="guardarOModificar" method="guardarOModificar" class="Action.ClienteAction">
+            <result name="success" type="redirect">listar</result>
+            <result name="input" type="tiles">/Usuario/AltaModificacion.tiles</result>
+        </action>
+        <action name="eliminar" method="eliminar" class="Action.ClienteAction">
+            <result name="success" type="redirect">listar</result>
+        </action>
+        <action name="listar" method="list" class="Action.ClienteAction">
+            <result name="success" type="tiles">/Usuario/Todos.tiles</result>
+        </action>
+        <action name="habilitar" method="habilitar" class="Action.ClienteAction">
+            <result name="success" type="redirect">listar</result>
+        </action>
+        <action name="editar" method="editar" class="Action.ClienteAction">
+            <result name="success" type="tiles">/Usuario/AltaModificacion.tiles</result>
+        </action> 
+        <action name="nuevo" method="nuevo" class="Action.LinkAction">
+            <result name="nuevo" type="tiles">/Usuario/AltaModificacion.tiles</result>
+        </action>              
+    </package>
+</struts>

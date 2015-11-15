@@ -10,5 +10,6 @@
     </package>
     <include file="struts-candidato.xml"></include>
     <include file="struts-mesa.xml"></include>
+    <include file="struts-usuario.xml"></include>
     
 </struts>

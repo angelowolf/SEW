@@ -7,6 +7,7 @@
         <put-attribute name="title" value="" />
         <put-attribute name="body" value="" /> 
     </definition>
+    <!--Mesas-->
     <definition name="/Mesa/AltaModificacion.tiles" extends="baseLayout">
         <put-attribute name="title" value="Formulario Mesa" />
         <put-attribute name="body" value="/Mesa/AltaModificacion.jsp" />
@@ -15,6 +16,7 @@
         <put-attribute name="title" value="Mesas" />
         <put-attribute name="body" value="/Mesa/Todos.jsp" />
     </definition>
+    <!--Candidatos-->
     <definition name="/Candidato/AltaModificacion.tiles" extends="baseLayout">
         <put-attribute name="title" value="Formulario Candidato" />
         <put-attribute name="body" value="/Candidato/AltaModificacion.jsp" />
@@ -22,6 +24,15 @@
     <definition name="/Candidato/Todos.tiles" extends="baseLayout">
         <put-attribute name="title" value="Candidatos" />
         <put-attribute name="body" value="/Candidato/Todos.jsp" />
+    </definition>
+    <!--Usuarios-->
+    <definition name="/Usuario/AltaModificacion.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Formulario Usuario" />
+        <put-attribute name="body" value="/Usuario/AltaModificacion.jsp" />
+    </definition>
+    <definition name="/Usuario/Todos.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Usuarios" />
+        <put-attribute name="body" value="/Usuario/Todos.jsp" />
     </definition>
   
 </tiles-definitions>

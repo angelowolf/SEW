@@ -1,5 +1,6 @@
 package Action;
 
+import Controlador.ControladorCandidato;
 import DAO.DAOFactory;
 import Modelo.Negocio.Candidato;
 import com.opensymphony.xwork2.ActionContext;
@@ -49,7 +50,7 @@ public class CandidatoAction extends ActionSupport implements ModelDriven<Candid
             daoCandidato.modificarCandidato(candidato);
             sesion.put("mensaje", "Candidato Modificado.");
         } else {
-            daoCandidato.insertarCandidato(candidato);
+            ControladorCandidato.crear(d, candidato);;
             sesion.put("mensaje", "Candidato Agregado.");
         }
         return SUCCESS;
@@ -65,7 +66,7 @@ public class CandidatoAction extends ActionSupport implements ModelDriven<Candid
 
     public String eliminar() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        daoCandidato.eliminarCandidato(Integer.parseInt(request.getParameter("idCandidato")));
+        ControladorCandidato.eliminar(d, Integer.parseInt(request.getParameter("idCandidato")));
         sesion.put("mensaje", "Candidato Eliminado.");
         return SUCCESS;
     }

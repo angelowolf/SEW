@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>
-                        Numero
+                        Número
                     </th>    
                     <th>
                         Funciones

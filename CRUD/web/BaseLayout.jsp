@@ -37,7 +37,7 @@
             <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 
                 <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-user fa-stack-1x "></i></span> Candidatos</a>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-download-alt fa-stack-1x "></i></span> Candidatos</a>
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li><a href="<s:url action="listar" namespace="/Candidato"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-list fa-stack-1x "></i></span>Todos</a></li>
                         <li><a href="<s:url action="nuevo" namespace="/Candidato"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-plus fa-stack-1x "></i></span>Nuevo</a></li>
@@ -48,6 +48,12 @@
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li><a href="<s:url action="listar" namespace="/Mesa"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-list fa-stack-1x "></i></span>Todos</a></li>
                         <li><a href="<s:url action="nuevo" namespace="/Mesa"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-plus fa-stack-1x "></i></span>Nuevo</a></li>                        </ul>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-user fa-stack-1x "></i></span> Usuarios</a>
+                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                        <li><a href="<s:url action="listar" namespace="/Usuario"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-list fa-stack-1x "></i></span>Todos</a></li>
+                        <li><a href="<s:url action="nuevo" namespace="/Usuario"/>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-plus fa-stack-1x "></i></span>Nuevo</a></li>                        </ul>
                 </li>
             </ul>
         </div>
