@@ -22,7 +22,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
                 <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
             </button>
-            <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i> SEW</a>        
+            <a class="navbar-brand" href="resultadosEnVivo.jsp"><i class="fa fa-rocket fa-4"></i> SEW</a>        
         </div><!-- navbar-header-->
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

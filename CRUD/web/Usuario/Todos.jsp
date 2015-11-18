@@ -1,5 +1,6 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="form-group">
     <s:actionmessage theme="bootstrap"/>
@@ -9,6 +10,9 @@
         </legend>
     </fieldset>     
     <div class=" col-md-12">
+
+     
+
         <table class="table table-striped">
             <thead>
                 <tr>
