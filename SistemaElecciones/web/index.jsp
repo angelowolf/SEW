@@ -26,7 +26,7 @@
             <div class="form-header">
                 <h1>S.E.W. - Sistema de Elecciones WEB</h1>
             </div>
-            <s:form class="form animate-form" id="form"  action="login">
+            <s:form class="form animate-form" id="form" action="login" namespace="/">
                 <s:actionerror theme="bootstrap"/>
                 <s:actionmessage theme="bootstrap"/>
                 <s:fielderror theme="bootstrap"/>
@@ -47,6 +47,9 @@
                 </div>
                 <div class="form-group submit">
                     <input class="btn btn-lg" type="submit" value="ENVIAR">
+                </div>
+                <div class="">
+                    <a href="RegistrarUsuario.jsp">Crear Cuenta</a>
                 </div>
             </s:form>
         </div>

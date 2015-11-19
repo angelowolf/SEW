@@ -48,6 +48,7 @@ create table usuario
 	idUsuario INT not null auto_increment,
 	nick varchar(45) not null,
         clave varchar(45) not null,
+        administrador TINYINT(1) not null, 
         habilitado TINYINT(1) not null, 
         primary key (idUsuario)
 );

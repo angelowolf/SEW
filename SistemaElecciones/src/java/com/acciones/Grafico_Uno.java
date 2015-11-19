@@ -10,7 +10,6 @@ import DAO.Votante.VotanteDAO;
 import com.modelo.Resultado;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -24,14 +23,14 @@ import org.apache.struts2.convention.annotation.Result;
  *
  * @author Angelo
  */
-@Namespace(value = "/")
+@Namespace(value = "/Resultado")
 @Action(value = "Grafico_Uno", results = {
     @Result(name = "success", location = "/test.jsp"),
     @Result(name = "error", location = "/error.jsp"),
     @Result(name = "none", location = "/index.jsp")})
 public class Grafico_Uno extends ActionSupport {
 
-    private static final Logger logger = Logger.getLogger(CargarVotosAction.class);
+    private static final Logger logger = Logger.getLogger(Grafico_Uno.class);
     private static final long serialVersionUID = 1L;
     DAO.DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
     VotanteDAO DAOVotante = d.getVotanteDAO();

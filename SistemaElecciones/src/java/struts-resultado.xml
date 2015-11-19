@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+
+    <package name="resultado" extends="struts-default" namespace="/Resultado">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <action name="cargarResultadoFinales" method="cargarResultados" class="com.acciones.CargarResultadosFinalesAction">
+            <result name="success" type="redirect">resultadosFinales</result>
+            <result name="input" type="tiles">/Resultado/CargarResultadosFinales.tiles</result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="cargarFormulario" method="cargarFormulario" class="com.acciones.CargarResultadosFinalesAction">
+            <result name="success" type="tiles">/Resultado/CargarResultadosFinales.tiles</result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="resultadosFinales" method="resultadoFinal" class="com.acciones.ResultadoAction">
+            <result name="success" type="tiles">/Resultado/ResultadosFinales.tiles</result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="resultadosEnVivo" method="resultadosEnVivo" class="com.acciones.LinkAction">
+            <result name="resultadosEnVivo" type="tiles">/Resultado/ResultadosEnEvivo.tiles</result>
+        </action>
+        <action name="tabla-participacion" method="execute" class="com.acciones.AJAXTablaResultadoEnVivo">
+            <result name="error">/error.jsp</result>
+        </action> 
+    </package>
+</struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="nuevaSesion" namespace="/" extends="struts-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <action name="login" method="execute" class="com.acciones.LoginAction">
+            <result name="success" type="redirect">/Resultado/resultadosEnVivo</result>
+            <result name="input">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
+
+</struts>

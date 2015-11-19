@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+
+    <package name="votante" extends="struts-default" namespace="/Votante">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <action name="buscarVotante" method="buscar" class="com.acciones.VotanteAction">
+            <result name="success" type="tiles">/Votante/Buscar.tiles</result>
+            
+        </action>
+        <action name="marcarPartido" method="listarVotantes" class="com.acciones.VotanteAction">
+            <result name="success" type="tiles">/Votante/MarcarPartido.tiles</result>
+            
+        </action>
+        <action name="marcarVoto" method="listarVotantes" class="com.acciones.VotanteAction">
+            <result name="success" type="tiles">/Votante/MarcarVoto.tiles</result>
+            
+        </action>
+        <action name="listarSinVotar" method="listarVotantesSinVotar" class="com.acciones.VotanteAction">
+            <result name="success" type="tiles">/Votante/ListarSinVotar.tiles</result>
+            
+        </action>       
+        <action name="MarcarPartido" method="execute" class="com.acciones.AJAXMarcarPartido">
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="MarcarVoto" method="execute" class="com.acciones.AJAXMarcarVoto">
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
+</struts>

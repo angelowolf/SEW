@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <include file="struts-login.xml"></include>
+    <include file="struts-candidato.xml"></include>
+    <include file="struts-mesa.xml"></include>
+    <include file="struts-resultado.xml"></include>
+    <include file="struts-usuario.xml"></include>
+    <include file="struts-votante.xml"></include>    
+    <include file="struts-ajax.xml"></include>    
+</struts>

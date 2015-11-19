@@ -88,28 +88,29 @@ var dynamicTable = (function () {
     };
 }());
 
-var cargarDataPoints = function () {
+var cargarDatosTabla = function () {
+    var datos = [];
     $.ajax({
         async: false,
         url: "tabla-participacion",
         dataType: "json",
         success: function (resultadoJsonData) {
-            dataPoints = [];
+
             for (i = 0; i < resultadoJsonData.length; i++) {
 //                alert(i)
-                dataPoints.push({num_mesa: resultadoJsonData[i].numeroMesa, total: '' + resultadoJsonData[i].total, actual: resultadoJsonData[i].cantidad, porcentaje: '' + resultadoJsonData[i].participacion});
+                datos.push({num_mesa: resultadoJsonData[i].numeroMesa, total: '' + resultadoJsonData[i].total, actual: resultadoJsonData[i].cantidad, porcentaje: '' + resultadoJsonData[i].participacion});
             }
         }
     });
-    return dataPoints;
+    return datos;
 };
 var lafuncion = function () {
     var dt = dynamicTable.config('tabla-cantidad',
             ['num_mesa', 'total', 'actual', 'porcentaje'],
-            ['N°Mesa', 'Total', 'Actual', 'Porcentaje'], //set to null for field names instead of custom header names
+            ['N&#176;Mesa', 'Total', 'Actual', 'Porcentaje'], //set to null for field names instead of custom header names
             'There are no items to list...');
 
-    dt.load(cargarDataPoints());
+    dt.load(cargarDatosTabla());
 };
 $(document).ready(function (e) {
     lafuncion();

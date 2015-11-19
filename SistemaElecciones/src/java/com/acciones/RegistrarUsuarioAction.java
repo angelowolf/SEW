@@ -5,13 +5,10 @@
  */
 package com.acciones;
 
-import Controlador.Encriptar;
-import DAO.Cliente.ClienteDAO;
+import Controlador.ControladorCliente;
 import DAO.DAOFactory;
 import DAO.MyException;
-import DAO.Usuario.UsuarioDAO;
 import com.opensymphony.xwork2.ActionSupport;
-import Modelo.Negocio.Usuario;
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import org.apache.log4j.Logger;
@@ -30,6 +27,7 @@ import org.apache.struts2.convention.annotation.Results;
 })
 public class RegistrarUsuarioAction extends ActionSupport {
 
+    private final DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
     private static final Logger logger = Logger.getLogger(RegistrarUsuarioAction.class);
     private String nick, clave, clave2, nombre, apellido, email;
 
@@ -37,11 +35,11 @@ public class RegistrarUsuarioAction extends ActionSupport {
     @Action(value = "/registrar_usuario")
     public String execute() {
         try {
-            if (Controlador.ControladorCliente.crearCliente(apellido, nombre, email, nick, clave)) {
-                addActionMessage("Cliente registrado con Exito!.");
+            if (ControladorCliente.crearCliente(d, apellido, nombre, email, nick, clave)) {
+                addActionMessage("Usuario registrado. Debe ser habilitado por el administrador.");
                 return SUCCESS;
             } else {
-                addActionError("Error al crear el Cliente.");
+                addActionError("Error al crear el Usuario.");
                 return INPUT;
             }
         } catch (MyException e) {
@@ -58,7 +56,7 @@ public class RegistrarUsuarioAction extends ActionSupport {
             if (nick.trim().length() < 6) {
                 addFieldError("nick", "EL nick debe tener 6 caracteres como minimo.");
             } else {
-                if (!Controlador.ControladorCliente.isNickDisponible(nick)) {
+                if (!Controlador.ControladorUsuario.isNickDisponible(d, nick)) {
                     addFieldError("nick", "El nick elegido ya esta en uso, elija otro!.");
                 }
             }
@@ -74,14 +72,6 @@ public class RegistrarUsuarioAction extends ActionSupport {
                 }
             }
         }
-//
-//        if (nombre.trim().isEmpty()) {
-//            addFieldError("nombre", "Ingrese un nombre.");
-//        }
-//        if (apellido.trim().isEmpty()) {
-//            addFieldError("apellido", "Ingrese un apellido.");
-//        }
-
     }
 
     public void setClave2(String clave2) {

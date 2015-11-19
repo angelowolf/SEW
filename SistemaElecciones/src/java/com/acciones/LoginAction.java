@@ -5,50 +5,40 @@
  */
 package com.acciones;
 
-import Controlador.Encriptar;
+import Controlador.ControladorUsuario;
 import DAO.Candidato.CandidatoDAO;
 import DAO.DAOFactory;
 import DAO.Mesa.MesaDAO;
 import DAO.MyException;
-import DAO.Usuario.UsuarioDAO;
-import Modelo.Negocio.Candidato;
 import Modelo.Negocio.Usuario;
-import com.modelo.SingletonCantidadMesa;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.Result;
 
 /**
  *
  * @author Angelo
  */
-@Namespace(value = "/")
-@Action(value = "login", results = {
-    @Result(name = "success", location = "/resultadosEnVivo.jsp"),
-    @Result(name = "error", location = "/error.jsp"),
-    @Result(name = "input", location = "/index.jsp")})
 public class LoginAction extends ActionSupport {
 
     private static final Logger logger = Logger.getLogger(LoginAction.class);
     private String username;
     private String password;
     private DAOFactory d = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-    private Map<String, Object> sesion = ActionContext.getContext().getSession();
-    private Map<String, Object> application = ActionContext.getContext().getApplication();
+    private final Map<String, Object> sesion = ActionContext.getContext().getSession();
+    private final Map<String, Object> application = ActionContext.getContext().getApplication();
 
     @Override
     public String execute() {
         try {
-            UsuarioDAO usuarioDAO = d.getUsuarioDAO();
-            Usuario usuario = usuarioDAO.getUsuario(username);
-            String claveMD5 = Encriptar.encriptaEnMD5(password);
-            if (usuario != null && usuario.getNick().equals(username) && usuario.getClave().equals(claveMD5)) {
-                sesion.put("user", usuario);
+            if (ControladorUsuario.iniciarSesion(d, username, password)) {
+                if (ControladorUsuario.isHabilitado(d, username)) {
+                    Usuario usuario = ControladorUsuario.getUsuario(d, username);
+                    sesion.put("user", usuario);
+                } else {
+                    addFieldError("", "Usuario no habilitado");
+                }
             } else {
                 addFieldError("", "Usuario o Contraseña incorrectos.");
                 return INPUT;

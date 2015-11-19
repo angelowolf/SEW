@@ -2,10 +2,9 @@ function funcion_cargar_voto(idVotante) {
 //                        alert("algo");
 //                        var atributos = 'mesa=' + numTable + '&numeroCheckBox=' + boxName;
     var atributos = 'idVotante=' + idVotante;
-
     $.ajax({
         async: false,
-        url: "ServletCargarVoto",
+        url: "MarcarVoto",
         data: atributos,
 //                            dataType: "json",
         beforeSend: function (objeto) {
@@ -25,7 +24,7 @@ function funcion_marcar_partido(idVotante) {
 
     $.ajax({
         async: false,
-        url: "ServletMarcarPartido",
+        url: "MarcarPartido",
         data: atributos,
 //                            dataType: "json",
         beforeSend: function (objeto) {
