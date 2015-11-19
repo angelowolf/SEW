@@ -11,7 +11,7 @@
     </fieldset>     
     <div class=" col-md-12">
 
-        <display:table name="clienteLista">
+        <display:table name="clienteLista" pagesize="2" requestURI="${listar}">
             <display:column property="idCliente" title="Id Cliente"/>
             <display:column property="nombre" title="Nombre"/>
             <display:column property="apellido" title="Apellido"/>

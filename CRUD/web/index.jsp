@@ -15,6 +15,99 @@
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
+
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a href="{1}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="{2}">
+                    <span aria-hidden="true">Anterior</span>
+                </a>
+            </li>
+            {0}
+            <li>
+                <a href="{3}">
+                    <span aria-hidden="true">Siguiente</span>
+                </a>
+            </li>
+            <li>
+                <a href="{4}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <nav>
+        <ul class="pagination">
+            {0}
+            <li>
+                <a href="{3}">
+                    <span aria-hidden="true">
+                        Siguiente
+                    </span>
+                    <span class="sr-only">
+                        siguiente
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{4}">
+                    <span aria-hidden="true">
+                        &raquo;
+                    </span>
+                    <span class="sr-only">
+                        ultimo
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a href="{1}">
+                    <span aria-hidden="true">
+                        &laquo;
+                    </span>
+                    <span class="sr-only">
+                        primera
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{2}">
+                    <span aria-hidden="true">
+                        Anterior
+                    </span>
+                    <span class="sr-only">
+                        anterior
+                    </span>
+                </a>
+            </li>
+            {0}
+        </ul>
+    </nav>
+
+    
+    
+    <span class="pagelinks">
+        &nbsp;{0}&nbsp;&nbsp;&nbsp;
+        <a class="paging" href="{3}">
+            Siguiente&gt;
+        </a>
+        &nbsp;
+        <a class="paging" href="{4}">
+            &Uacute;ltimo&gt;&gt;
+        </a>
+    </span>        
+
+
     <nav class="navbar navbar-default no-margin">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header fixed-brand">
@@ -55,7 +148,7 @@
         <div id="page-content-wrapper">
             <div class="container-fluid xyz">
                 <div class="row">
-                    
+
                 </div>
             </div>
         </div>
