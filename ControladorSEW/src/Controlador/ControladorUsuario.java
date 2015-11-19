@@ -42,7 +42,7 @@ public class ControladorUsuario {
     }
 
     public static void habilitarDeshabilitar(DAOFactory d, IUsuario usuario) {
-        usuario.conmutar();
+        usuario.conmutarHabilitado();
         UsuarioDAO dao = d.getUsuarioDAO();
         dao.habilitar(usuario);
     }
@@ -52,5 +52,23 @@ public class ControladorUsuario {
         Usuario usuario = dao.getUsuario(username);
         String claveMD5 = Soporte.Encriptar.encriptaEnMD5(password);
         return usuario != null && usuario.getNick().equals(username) && usuario.getClave().equals(claveMD5);
+    }
+
+    public static boolean isHabilitado(DAOFactory d, String username) {
+        UsuarioDAO usuarioDAO = d.getUsuarioDAO();
+        Usuario usuario = usuarioDAO.getUsuario(username);
+        return usuario.isHabilitado();
+    }
+
+    public static void administrar(DAOFactory d, IUsuario usuario) {
+        usuario.conmutarAdministrador();
+        UsuarioDAO dao = d.getUsuarioDAO();
+        dao.administrador(usuario);
+    }
+
+    public static Usuario getUsuario(DAOFactory d, String username) {
+        UsuarioDAO dao = d.getUsuarioDAO();
+        Modelo.Negocio.Usuario u = dao.getUsuario(username);
+        return u;
     }
 }
