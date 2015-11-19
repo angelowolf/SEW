@@ -24,4 +24,8 @@ public interface UsuarioDAO {
 
     public boolean eliminar(int idUsuario);
 
+    public void modificar(IUsuario u);
+
+    public void administrador(IUsuario u);
+
 }

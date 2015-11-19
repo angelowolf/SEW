@@ -15,13 +15,14 @@ public class Usuario implements IUsuario {
 
     private int idUsuario;
     private String nick, clave;
-    private boolean habilitado;
+    private boolean habilitado, administrador;
 
-    public Usuario(int id_usuario, String nick, String clave, boolean habilitado) {
+    public Usuario(int id_usuario, String nick, String clave, boolean habilitado, boolean administrador) {
         this.idUsuario = id_usuario;
         this.nick = nick;
         this.clave = clave;
         this.habilitado = habilitado;
+        this.administrador = administrador;
     }
 
     public Usuario() {
@@ -73,18 +74,43 @@ public class Usuario implements IUsuario {
     }
 
     @Override
-    public String toString() {
-        return "UsuarioReal{" + "id_usuario=" + idUsuario + ", nick=" + nick + ", clave=" + clave + ", habilitado=" + habilitado + '}';
+    public boolean isAdministrador() {
+        return administrador;
     }
 
     @Override
-    public void conmutar() {
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + ", nick=" + nick + ", clave=" + clave + ", habilitado=" + habilitado + ", administrador=" + administrador + '}';
+    }
+
+   
+    @Override
+    public void conmutarHabilitado() {
         habilitado = !habilitado;
+    }
+
+    @Override
+    public void conmutarAdministrador() {
+        administrador = !administrador;
     }
 
     @Override
     public int intHabilitado() {
         if (habilitado) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int intAdministrador() {
+        if (administrador) {
             return 1;
         } else {
             return 0;

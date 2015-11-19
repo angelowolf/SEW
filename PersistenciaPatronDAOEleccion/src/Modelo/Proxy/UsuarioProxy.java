@@ -73,13 +73,33 @@ public class UsuarioProxy implements IUsuario {
     }
 
     @Override
-    public void conmutar() {
-        getSujetoReal().conmutar();
+    public void conmutarHabilitado() {
+        getSujetoReal().conmutarHabilitado();
     }
 
     @Override
     public int intHabilitado() {
         return getSujetoReal().intHabilitado();
+    }
+
+    @Override
+    public boolean isAdministrador() {
+        return getSujetoReal().isAdministrador();
+    }
+
+    @Override
+    public void setAdministrador(boolean administrador) {
+        getSujetoReal().setAdministrador(administrador);
+    }
+
+    @Override
+    public void conmutarAdministrador() {
+        getSujetoReal().conmutarAdministrador();
+    }
+
+    @Override
+    public int intAdministrador() {
+        return getSujetoReal().intAdministrador();
     }
 
 }

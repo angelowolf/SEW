@@ -29,7 +29,15 @@ public interface IUsuario {
 
     public String toString();
 
-    public void conmutar();
+    public void conmutarHabilitado();
 
     public int intHabilitado();
+
+    public boolean isAdministrador();
+
+    public void setAdministrador(boolean administrador);
+
+    public void conmutarAdministrador();
+
+    public int intAdministrador();
 }
